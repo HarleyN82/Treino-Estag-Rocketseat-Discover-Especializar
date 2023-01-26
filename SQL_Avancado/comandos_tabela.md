@@ -1,0 +1,8 @@
+## CREATE TABLE
+
+CREATE TABLE alunos(
+  matricula INTEGER PRIMARY KEY AUTOINCREMENT,
+  nome TEXT,
+  cpf INTEGER UNIQUE,
+  responsavel TEXT
+)

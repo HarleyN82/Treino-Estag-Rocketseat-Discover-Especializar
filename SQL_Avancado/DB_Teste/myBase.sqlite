@@ -1,0 +1,6 @@
+CREATE TABLE alunos(
+  matricula INTEGER PRIMARY KEY,
+  nome TEXT,
+  cpf INTEGER UNIQUE,
+  responsavel TEXT
+)
