@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Transition</title>
+    <style> 
+        body{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+        }
+        .box-purple,
+        .box-blue,
+        .box-pink,
+        .box-yellow{
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+        }
+        .box-purple{
+            background-color: rgb(204, 0, 255);
+            transition: background-color 1s ease 2s;
+        }
+        .box-purple:hover{
+            background-color: rgb(243, 33, 250);
+            transition-property: background-color;
+            transition-duration: 1s;
+            transition-timing-function: ease-in;
+            transition-delay: 2s;
+        }
+        .box-blue{
+            background-color: rgb(0, 247, 255);
+            transition: all 1s linear 0s;
+        }
+        .box-blue:hover{
+            transition: all 1s cubic-bezier(.29,1.01,1,-0.68);
+            background-color: rgb(0, 255, 187);
+            width: 300px;
+            height: 300px;
+            border-radius: 8px; /*Quadrado com as pontas arredondadas*/
+        }
+        .box-pink{
+            background-color: rgb(255, 0, 157);
+            transition: width 1s linear 1s;
+        }
+        .box-pink:hover{
+            transition: width 2s ease-in-out 0s;
+            width: 350px;
+        }
+        .box-yellow{
+            background-color: rgb(255, 251, 0);
+            transition: width 2s linear 1s;
+        }
+        .box-yellow:hover{
+            opacity: 0;  /*Por padrão o opacity é 1*/  
+            transition: opacity 1s linear 0s;
+        }
+    </style>
+</head>
+<body>
+    <div class="box-purple"></div>
+    <div class="box-blue"></div>
+    <div class="box-pink"></div>
+    <div class="box-yellow"></div>
+</body>
+</html>
