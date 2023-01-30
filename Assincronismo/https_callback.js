@@ -1,6 +1,6 @@
 // Conectando API com HTTPS e CallBack
 // + nodejs
-// A API está sdofrendo um Fetch (Buscar algo)
+// A API está sofrendo um Fetch (Buscar algo)
 
 const https = require('https')
 const API = 'https://jsonplaceholder.typicode.com/users?_limit=2'
