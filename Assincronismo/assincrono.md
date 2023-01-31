@@ -1,24 +1,23 @@
 # JavaScript Assícriono
 
-O que é síncrono vs assíncrono no JavaScript?
-Qual é o fluxo natural de execução do JavaScript?
-O que é uma `callback function?`
-A função `setTimeout()`
+- O que é síncrono vs assíncrono no JavaScript?
+- Qual é o fluxo natural de execução do JavaScript?
+- O que é uma `callback function?`
+- A função `setTimeout()`
 
 Dentre outros assuntos como Promises, Async / Await...
 
 ## Síncrono vs Assíncrono
 
 - `Sistema Síncrono`
-Um sistema síncrono (synchronous) é uma tarefa que é concluída após a outra.
+> Um sistema síncrono (synchronous) uma tarefa é concluída após a outra.
 
 No exemplo apresentado na aula, uma imagem só carrega depois que a anterior termina de carregar. Ou seja, no sistema síncrono a tarefa anterior precisa ser concluída, para então iniciar a próxima.
 
 Por padrão, o JavaScript é um sistema síncrono.
 
 - `Sistema Assíncrono`
-
-Num sistema assíncrono (asynchronous) as tarefas são executadas de maneira independente uma da outra.
+> Num sistema assíncrono (asynchronous) as tarefas são executadas de maneira independente uma da outra.
 
 No exemplo apresentado na aula, as imagens são carregadas de maneira independente, não é necessário esperar a primeira imagem carregar para iniciar o carregamento da próxima.
 
@@ -34,15 +33,15 @@ function imprimirDado(dado) {
 	console.log(dado)
 }
 
-imprimirDado(1) 
-imprimirDado('texto') 
-imprimirDado(true)
-imprimirDado({ nome: 'João' })
-imprimirDado([1, 2, 3])
+imprimirDado(1) // number
+imprimirDado('texto')  // string
+imprimirDado(true) // boolean
+imprimirDado({ nome: 'João' }) // object
+imprimirDado([1, 2, 3]) // array
 
 function imprimirDado(dado) {
 	console.log('outras tarefas')
-	console.log(dado())
+	console.log(dado()) // chamei uma função dentro de outra
 }
 
 imprimirDado(function () {
@@ -59,6 +58,7 @@ setTimeout() é uma função que recebe como argumento uma outra função e um t
 > setTimeout(function, delay)
 
 ```js
+
 // Exemplo01
 setTimeout(function () {
 	console.log('depois de 1s')
@@ -69,6 +69,7 @@ const timeOut = 3000
 const finished = () => console.log('done!')
 setTimeout(finished,timeOut) // A função será chamada de volta após 3s
 console.log('Mostrar')
+
 ```
 A função de argumento do setTimeout é uma callback, ela vai executar depois de um certo tempo. No caso do exemplo acima, a função vai ser executada depois de 1000ms que é o mesmo que 1s.
 
@@ -76,9 +77,11 @@ A função de argumento do setTimeout é uma callback, ela vai executar depois d
 
 Nesta aula vamos verificar se estamos entendendo como que funciona o callback e o assincronismo no JavaScript.
 
+Para isso usamos conceitos de métodos HTTPS, e o próprio recurso do nodejs - require - para buscar esse método nativo do JS, o HTTPs e a partir dele poder acessar suas funções.
+
 ```js
 const https = require('http')
-const API = 'https://jsonplaceholder.typicode.com/users?_limit=2'
+const API = 'https://jsonplaceholder.typicode.com/users?_limit=2' // nossa requisição
 
 https.get(API, res => {
 	console.log(res.statusCode)
@@ -108,6 +111,7 @@ E o NodeJS para testar os códigos na máquina local.
 - É usado para operações assíncronas
 - Não bloqueia outras operações
 - Essa promessa não significa que vai dar certo ou que vai dar errado
+- Sintaxe: `new Promise(resolve, reject)`
 
 - **Exemplo do Uber**
 	- Quando você chama um uber pelo app
@@ -186,8 +190,8 @@ O sentido de "busca" do fetch é que ele vai atrás dessa URL.
 ```js
 
 fetch('https://api.github.com/users/maykbrito')
-.then(response => response.json()) // vamos retornar apenas ele
-.then(data => fetch(data.repos_url))
+.then(response => response.json()) // vamos retornar apenas ele convertido em json
+.then(data => fetch(data.repos_url)) // como vamos buscar algo dentro do que já foi buscado criamos outra promessa fetch
 .then(res => res.json()
 .then(d => console.log(d)))
 .catch(err => console.log(err)) // Esse caminho do erro pode envolver qualquer etapa.
@@ -199,11 +203,11 @@ console.log(fetch('https://api.github.com/users/maykbrito'))
 
 ## AXIOS
 
-É uma biblioteca http client baseada em promessas para que possamos usar tanto no brownser quanto no node.js. 
+> É uma biblioteca http client baseada em promessas para que possamos usar tanto no brownser quanto no node.js. 
 
-Por padrão do browser já temos o fetch, mas no node é preciso instalar.
-
-Link: https://axios-http.com/
+- Por padrão do browser já temos o fetch, mas no node é preciso instalar.
+- Como é uma biblioteca http, aqui já podemos acessar os métodos HTTPS. Seria uma alternativa para o "require".
+- Link: https://axios-http.com/
 
 ```js
 import axios from "axios";
@@ -239,8 +243,9 @@ axios.get('https://api.github.com/users/maykbrito')
     const user = res.data
     return axios.get(user.repos_url) // vamos trabalhar com a nossa resposta
   })
-  .then(repos => console.log(repos.data))
+  .then(repos => console.log(repos.data))  // por encadeamento o "then" se refere a linha de código anterior
   .catch(error => console.log(error))
+
 ```
 
 E se caso quisermos colocar tudo em uma arrow function é só fazer isso. Deixando ainda bem mais simplificado.
@@ -285,7 +290,7 @@ Promise.all([
 
 Ou seja, é uma forma mais elegante de escrever promessas.
 
-Primeiro, vamos criar uma função 'async', porque dentro dela teremos um await.
+- Primeiro, vamos criar uma função 'async', porque dentro dela teremos um await (recurso usado para indicar a "espera" de uma promessa).
 
 - **Sem usar o Async/Await**
 
@@ -302,7 +307,7 @@ promessa
 
 - **Usando Async/Await**
 
-Essa primeira parte substitui o "then".
+- Essa primeira parte substitui o "then".
 
 ```js
 
@@ -318,7 +323,7 @@ async function start(){
 start()
 ```
 
-Para substituir o catch e finally usaremos a mesma sintaxa de tratamento de erros (try..catch), justamente com o finally.
+- Para substituir o catch e finally usaremos a mesma sintaxa de tratamento de erros (try..catch), justamente com o finally.
 
 ```js
 const promessa = new Promise(function (resolve, reject) {
@@ -341,7 +346,8 @@ start();
 
 ## Async/Await com Fetch
 
-Podemos manipular a sintaxe Async/Await, esperando receber uma promessa, por meio da busca por fetch.
+- Podemos manipular a sintaxe Async/Await, esperando receber uma promessa, por meio da busca por fetch.
+- O próprio uso do fetch já indica a criação de uma promessa.
 
 ```js
 
@@ -358,24 +364,18 @@ start().catch((e) => console.log(e));
 
 ## Async/Await com Axios
 
-Podemos manipular a sintaxe Async/Await, esperando receber uma promessa, por meio da busca por axios.
+- Podemos manipular a sintaxe Async/Await, esperando receber uma promessa, por meio da busca por axios.
 
 ```js
 
 import axios from "axios";
 
-async function fetchRepos() {
-  try{
-    const user = await axios.get("https://api.github.com/users/maykbrito");
-    const repos = await axios.get(user.data.repos_url);
-    console.log(repos.data);
-  }catch(e){
-    console.log(e)
-  } finally{
-    console.log('rodar sempre')
-  }
+async function fetchRepos(){
+  const user = await axios.get("https://api.github.com/users/maykbrito")
+  const repos = await axios.get(user.data.repos_url)
+  console.log(repos.data)
 }
 
-fetchRepos();
+fetchRepos().catch((e) => console.log(e))
 
 ```

@@ -19,7 +19,7 @@ axios.get('https://api.github.com/users/maykbrito')
     const user = res.data
     return axios.get(user.repos_url) // vamos trabalhar com a nossa resposta
   })
-  .then(repos => console.log(repos.data))
+  .then(repos => console.log(repos.data))  // por encadeamento o "then" se refere a linha de código anterior
   .catch(error => console.log(error))
 
 // E se caso quisermos colocar tudo em uma arrow function é só fazer isso. Deixando ainda bem mais simplificado.
