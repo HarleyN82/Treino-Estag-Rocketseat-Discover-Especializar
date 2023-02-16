@@ -1,0 +1,22 @@
+{
+    "nome":"Samara Silvia",
+    "idade": 19,
+    "cidade": "Recife",
+    "filmes_favoritos" : [
+        "A Cabana",
+        "Os vingadores",
+        "A 5 passos de você"
+    ],
+    "hobbies":{
+        "semana": "leitura",
+        "fim_de_semana": {
+            "sabado": "cinema",
+            "domingo": "park",
+            "outros": [
+                "caminhada",
+                "netflix",
+                "natação"
+            ]
+        }
+    }
+}
