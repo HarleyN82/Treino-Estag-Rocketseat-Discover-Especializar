@@ -154,7 +154,7 @@ const promessa = new Promise((resolve,reject) => {
 
 console.log('aguardando...')
 
-promessa.then(result => console.log(result)) // Então (then), quando a promessa tiver um resultado seja + ou -, ela mandará uma resposta.
+promessa.then(result => console.log(result)) // Então (then), quando a promessa tiver um resultado + , ela mandará uma resposta.
 ```
 
 - **Solução do "Error"**
@@ -300,7 +300,7 @@ const promessa = new Promise(function(resolve,reject) {
 })
 
 promessa
-	.then(result => console.log(result)) // Então (then), quando a promessa tiver um resultado seja + ou -, ela mandará uma resposta.
+	.then(result => console.log(result)) // Então (then), quando a promessa tiver um resultado + , ela mandará uma resposta.
 	.catch(erro => console.log(erro)) // Como é para capturar o erro, então usamos o "catch".
 	.finally(() => console.log('finalizada')) // Dando certo ou não o pedido foi feito.
 ```
@@ -379,3 +379,8 @@ async function fetchRepos(){
 fetchRepos().catch((e) => console.log(e))
 
 ```
+
+## Referências
+
+- https://medium.com/trainingcenter/entendendo-promises-de-uma-vez-por-todas-32442ec725c2
+- https://codesandbox.io/s/practical-sid-lbl216?file=/src/index.js

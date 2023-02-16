@@ -21,7 +21,7 @@ const promessa = new Promise((resolve,reject) => {
 })
 
 promessa
-    .then(result => console.log(result)) // Então (then), quando a promessa tiver um resultado seja + ou -, ela mandará uma resposta.
+    .then(result => console.log(result)) // Então (then), quando a promessa tiver um resultado +, ela mandará uma resposta.
     .catch(erro => console.log(erro)) // Como é para capturar o erro, então usamos o "catch".
     .finally(() => console.log('finalizada')) // Dando certo ou não o pedido foi feito.
 
