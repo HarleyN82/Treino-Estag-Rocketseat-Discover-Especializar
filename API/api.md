@@ -104,14 +104,314 @@ Para nos conectarmos com esse servidor digite no seu navegador: `localhost:3000`
 ```js
 // Primeiro Chamamos o Express
 const express = require('express'); // chamando o módulo
-const app = express() // contração para aplicattion - inicializando o express
+const app = express() // app = contração para aplicattion 
+// express () = inicializando do express
 
 app.listen('3000') // ouvindo a porta do navegador = server
 ```
 
+Feito isso, após rodar o arquivo no terminal, por não ter nenhum contéudo, mas a criação do servidor, então só va aparecer que não consegue puxar nenhum dado - Cannot GET / - 
+
+- Dicas: 
+    - Digite `node .` no terminal e se o seu arquivo estiver como "index.js" assim como no "package.json", então já vai abri-lo normalmente.
+    - Digite `ctrl+c` para parar o terminal.
+    - Toda vez que alterar algo no js, é preciso rodar o terminal de novo.
+    - Para fins organizacionais você pode deixar esse código exclusivamente em um único arquivo chamado "server.js" e toda a manipulação no "index.js".
+
+## Method Get 
+
+Vamos iniciar o nosso CRUD (Create - Read - Update - Delete) com o método GET.
+
+```js
+
+// Method Get
+// Route - função para compor as rotas que o site vai fazer
+// Toda requisição precisa de uma requisição (req) e de uma resposta (res)
+
+app.route("/").get((req,res) => res.send("Hello"))
+app.route("/sobre").get((req,res) => res.send("Hello sobre"))
+
+```
+
+"/" signfica o subdominio do seu site, ou seja, onde está a rota/página que você quer. E quando não tem nada após essa barra (/) significa que você está na sua rota padrão, logo na sua home.
+
+## Method Post 
+
+Vamos agora criar dados e não apenas puxar, assim vamos mandar informações de fora para dentro da API.
+
+```js 
+
+// Method Post
+// Receber informações de fora para dentro da API
+
+app.route('/').post((req,res) => res.send(req.body)) // Pega o corpo da requisição e enviar para o insominia como send
+// console.log(req.body) // veremos a requisição no console apenas
+
+```
+
+Obs: Como o navegador só pega o method get, então precisamos usar o insominia para fazer as demais requisições.
+
+###  Usando o Insomnia
+
+- Crie um ambiente de desenvolvimento `Request Collection`.
+- Crie uma requisição post e coloque a nossa url no campo de input.
+- Só para testar crie também uma requisição get.
+- Onde tem escrito "body" selecione o formato de texto "json" e escreva o seguinte código, para que a gente possa vê uma resposta do servidor.
+
+```json
+
+// Insomnia
+
+{
+    "content":"Samara Silvia"
+}
+
+```
+
+- Como o que está dentro do body é um texto em json, para que a nossa api recebe os dados ela precisa converter esses dados para json, então criamos um middleware.
+- Isso porque, quando recebemos algo na API precisamos informar que é algo Json.
+
+```js
+
+// Middleware
+// Ponte entre as requisições, ou seja, precisamos converter para JSON
+// "use()" é uma função do express para usar algo dentro do express, nesse caso usar o formato de texto "json".
+
+app.use(express.json()) // usamos o express cru para fazer essa conversão
+
+```
+
+❗ **Fluxo do Processo:** Insomnia vai procurar a rota "/" descrita no nosso arquivo server.js, no qual se conectar com a url que passamos. Depois disso, irá buscar um método que seja igual ao que foi coloco na ferramenta, no caso o "post". Por fim, antes de executar o que está dentro desse método ele vai pegar o "meio do caminho" que é converter tudo que vem para o formato json. Assim, quando ele executar as requisições e repostas no seu "terminal" irá aparecer no formato que estabelecemos.
+
+## Method Put 
+
+Agora vamos "editar" informações com o método Put, ou seja, pegamos como referência a chave dos dados e alteramos os seus valores. (continuaremos com o insomnia)
+
+- Crie uma requisição put 
+- No Body + Json escreva o novo contéudo
+- Vamos usar o method get para vermos os dados anteriores, assim é bom "eliminar" o get anterior para que as informações não se confundam.
+
+```js
+
+// Method Put
+// Se colocarmos apenas o "res.send(author)" ele vai mostrar o valor dentro da variável que criamos
+
+let author = "Samara"
+
+app.route('/').get((req,res) => res.send(author)) // Se eu colocar "req.body" vai mostra tudo no formato JSON, mas ao mostrar apenar o "author", então ele vai puxar o valor da variável 
+app.route('/').put((req,res) => {
+    author = req.body.author  // res.body = a variável vai receber a chave e o contéudo como json
+    // Vamos alterar o "Samara" para a informação que está dentro do body
+    res.send(author) // irá mostrar a alteração no retorno
+})
+
+```
+
+## Method Delete
+
+Para finalizarmos o nosso crud, vamos estar deletando dados, por meio de parâmetros, ou seja, variáveis dadas no cabeçalho.
+
+- Primeiro vamos testar o nosso método com o seguinte código
+
+```js
+app.route('/').delete((req,res) => { res.send("apagado")
+})
+
+```
+
+❗ Obs: É importante destacar que o delete recebe sempre algum `identificador` na rota para que ele possa saber o que está apagando. Quando passamos variáveis na rota as chamamos de `parâmetros`.
+
+- De maneira ilustrativa, é como se dentro do method estivesse limpando o valor da variável
+
+```js
+
+let where = "Londres"
+app.route('/:where').delete((req,res) => { 
+    where = ""
+})
+
+```
+
+- Mas a maneira correta de fato é a seguinte
+
+```js
+
+// Method Delete
+// :identificador - Informando o dado específico que queremos deletar
+// Os ":" indica que é uma variável que está sendo passada
+
+app.route('/:identificador').delete((req,res) => { 
+    res.send(req.params.identificador)
+})
+
+```
+
+- Testando realmente o método vamos colocar no input a rota `localhost:3000/0101`, pois o insominia vai identiicar que é para deleter/limpar esse dado e vai exibir qual dado/id.... foi deletado.
+- O "localhost:3000/0101" foi armazenado na variável identificador.
+- Essa variável vem dentro da requisição que vai estar dentro de "params" - todas as variáveis da url - e pudemos pegar ela atráves do ".identificador".
 
 
+## Parâmetros nas Requisições
 
+São formas de passar para dentro do nosso código informações que não estavam lá antes.
+
+Formas de passar parâmetros nas requisições:
+    - **Forma A:**
+    localhost:3000/?name=samara - porque, programos o nosso código para receber informações desse tipo.
+    - **Forma B:**
+    localhost:3000/qualquer coisa - O navegador vai mostrar o que passamos
+    - **Forma C:**
+    É atrás do próprio body (post) e quando se envia, pode-se trabalhar com elas.
+
+As informações que passamos para a api são chamadas de parâmetros e elas são requisições, porque são pedidas, ou seja, requisitadas.
+
+## Body Params
+
+- Informações enviadas para API, mas que não ficam na URL.
+- Ele só é enviada através do put, patch...
+- Como sempre devemos criar um servidor para se conectar com a nossa api. E para este tópico usaremos o seguint tópico:
+
+```js
+
+const express = require('express'); // chamando o módulo
+const app = express() // contração para aplicattion - inicializando o express
+app.listen('3000')
+
+app.route('/').get((req,res) => {
+    res.send('olá') //console.log(req.body) // body está dentro da requisição
+})
+
+app.use(express.json())
+
+app.route('/').post((req,res) => {
+    const {nome,cidade} = req.body // pegamos valores específicos
+    res.send(`meu nome é ${nome} e minha cidade é ${cidade}`) // body está dentro da requisição
+    // Usamos template string para envolver as variáveis e as strings.
+})
+
+```
+
+- Não esquecendo de no insomnia colocar no body o json com este código:
+
+```json
+
+// Method Post
+
+{
+	"nome": "Samara Silvia",
+	"Cidade":"Recife",
+	"Filmes_favoritos":[
+		"A Cabana",
+		"Os vingadores",
+		"Flashpoint"
+	]
+}
+
+```
+
+## Route Params
+
+- Agora vamos pegar os parâmetros pela rota.
+- Tudo que vem após a barra - :/ - virá um variável no nosso código
+- O nome que colocamos é apenas referencial
+- Para isso vamos criar primeiro o nosso servidor
+
+```js
+
+// Route Params
+
+const express = require('express');
+const app = express()
+app.listen('3000')
+
+// Criamos um get padrão só por conveniência
+app.route('/').get((req,res) => res.send("Olá"))
+
+// Ao invés de escrevermos olá, mas passar o parâmetro
+app.route('/:variavel').get((req,res) => {
+    res.send(req.params.variavel)
+})
+
+```
+
+Dessa forma, indo no input e colocando "localhost:3000/Pessoa" a ferramenta irá retornar o valor da minha variável que é "Pessoa'. 
+
+❗ Obs: Se eu colocar um barra e escrever outra coisa, ele vai entender como outra variável e se não tivermos um local para armazená-la, então dará o seguinte erro "Cannot GET /Sou%20Linda/Samara".
+
+- Outra coisa que podemos fazer é limitar a rota a um nome específico.
+
+```js
+
+app.route('/:variavel').get((req,res) => {
+    res.send(req.params.variavel)
+})
+
+// Mas dessa vez só será chamada, exclusivamente, se após o barra tiver "identidade"
+app.route('/identidade/:variavel').get((req,res) => {
+    res.send(req.params.variavel)
+})
+
+```
+
+## Query Params
+
+- Passar parâmetros através da URL
+- As querys são identificadas na url, por meio da "?"
+- Assim, toda vez que tiver ela, ao seu lado poderá ser colocado a variável, o símbolo de "=" para dizer que vai receber um valor e depois o valor propriamente dito, ficando assim:
+
+```js
+localhost:3000?nome=samara
+```
+
+- Vamos construir o nosso código para receber essa estrutura
+
+```js
+// Query Params
+
+const express = require('express');
+const app = express()
+app.listen('3000')
+
+app.route('/').get((req,res) => res.send(req.query))
+```
+
+- Podemos criar várias variáveis também com o uso do s comercial - $ -
+
+```js
+localhost:3000?nome=samara&cidade=Recife
+```
+
+- Para filtrarmos as variáveis é só especificar após a query, mas se o valor da variável que colocamos não existir, ao rodar o insomnia não irá enviar nada.
+
+```js
+
+const express = require('express');
+const app = express()
+app.listen('3000')
+
+app.route('/').get((req,res) => res.send(req.query.nome))
+
+```
+
+- Podemos imendar o "req.query" em um novo tipo de rota, por exemplo:
+
+```js
+
+// Como não há nada, então vai retornar vazio {}, mas se colocarmos dados na url, então irá retornar esse dados normalmente
+
+app.route('/').get((req,res) => res.send(req.query)) // req.query.nome
+app.route('/about/user').get((req,res) => res.send(req.query)) // vamos mostrar as querys dessas rotas
+
+```
+
+- Assim, teremos a resposta já em JSON
+
+```json
+{
+	"nome": "samara",
+    "cidade": "Recife"
+}
+```
 
 ## Referências
 
