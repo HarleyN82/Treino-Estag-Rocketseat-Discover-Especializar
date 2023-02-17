@@ -49,7 +49,7 @@
 }
 ```
 
-- Ele sempre começa com { } e é composto por chaves e valores, ambos marcados com "".
+- Ele sempre começa com { } e é composto por chaves e valores, ambos marcados com "", caso seja um caracter.
 - Armazena qualquer tipo de dado: String; Number; Object; Array...
 
 ## Métodos HTTP
