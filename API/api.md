@@ -9,12 +9,12 @@
 
 > Application Programming Interface, ou seja, é uma aplicação voltada ao intermédio de sistemas, possibilitando diversas conexões, por meio de uma série de padrões e protocolos. Além disso, ela é criada por uma empresa, geralmente, quando a organização tem a intenção de que outros softwares usufruam de seus serviços. 
 
-- Analogia do Restaurante
+- **Analogia do Restaurante**
     - Chamamos o garçon e fazemos o pedido, porque nós não podemos ir diretamente até a cozinha e fazer isso.
     - Então, ele vem a mesa, anota o pedido e leva até a cozinha.
     - A cozinha tem a responsabilidade de preparar o pedido.
     - Quando a comida estiver pronta o chefe vai avisar o garçon que trás o pedido a nossa mesa.
-- Explicação da Analogia 
+- **Explicação da Analogia**
     - Clientes: Usuários
     - Mesa: Front-End, aplicação que conversa com o usuário.
     - Garçon: API, recebe o pedido do front, manda pro back e após recber os dados entrega para o front. (não tem influência de como os dados serão tratados)
@@ -52,7 +52,6 @@
 - Ele sempre começa com { } e é composto por chaves e valores, ambos marcados com "".
 - Armazena qualquer tipo de dado: String; Number; Object; Array...
 
-
 ## Métodos HTTP
 
 Os 5 principais métodos ou verbos HTTP são:
@@ -68,19 +67,30 @@ Os 5 principais métodos ou verbos HTTP são:
 - `Delete:` A API recebe identificadores de registros que devem ser apagados;
     - Ao acessar https://api.github.com/users com todos os usuários do git e colocamos na porta delete + identificador, ele automaticamente irá deletar este dado.
 
+## Express
+
+> O Express é um framework para aplicativo da web do Node.js
+
+Esse frame junto com o Node.js contribue para termos um lado back-end dentro do front-end com a mesma linguagem de programação - JavaScript -.
+
+O Express fornece uma camada fina de recursos fundamentais, principalmente à construção de API´s, para aplicativos da web, sem obscurecer os recursos do Node.js.
+
+Ele possui funções nativas/próprias que ajudam a ouvir os eventos, render páginas, puxar os métodos http e afins.
 
 ## Insominia
 
+> O Insomnia é um aplicativo de desktop de código aberto que elimina a dor de interagir e projetar, depurar e testar APIs.
+
 É um programa para fazer as requisições como post, put...
 
+Como o navegador se limita a apenas executar o método get, ou seja, recebendo apenas as requisições e as respostas. Todo o processo de criar registros, alterar dados e afins é preciso de uma ferramenta para fazer o gerenciamneto. Além disso, temos o express que vai ser usado para criarmos o ambiente de servidor e aplicamros no insomnia.
 
-
-
-
-
-
+Assim, usamos a insominia que funciona como o postman para testar as rest apis.
 
 ## Referências
 
 - https://json.org/json-pt.html
 - https://www.w3schools.com/whatis/whatis_json.asp
+- https://expressjs.com/pt-br/
+- https://developer.mozilla.org/pt-BR/docs/Learn/Server-side/Express_Nodejs
+- https://hcode.com.br/blog/usando-insomnia-para-testar-as-requisicoes-de-nossas-apis
