@@ -87,6 +87,32 @@ Como o navegador se limita a apenas executar o método get, ou seja, recebendo a
 
 Assim, usamos a insominia que funciona como o postman para testar as rest apis.
 
+## API no Back-End
+
+> Vamos criar uma api no backend com a criação de um servidor, por meio do express, atrelado a ferramenta insomnia.
+
+- Configurando o Ambiente
+    - Instale o pacote npm: `npm i -y`
+    - Instale o express: `npm i express`
+
+## Criando o Server
+
+Vamos criar um arquivo chamando `index.js`, no qual conterá o servidor para a nossa api.
+
+Para nos conectarmos com esse servidor digite no seu navegador: `localhost:3000`. Por não termos criado nada ainda aparecerá um erro de busca. Mas que pode ser solucionado com o código abaixo.
+
+```js
+// Primeiro Chamamos o Express
+const express = require('express'); // chamando o módulo
+const app = express() // contração para aplicattion - inicializando o express
+
+app.listen('3000') // ouvindo a porta do navegador = server
+```
+
+
+
+
+
 ## Referências
 
 - https://json.org/json-pt.html
