@@ -466,18 +466,49 @@ app.route('/').get((req,res) => {
 .then(result => res.send(`<img src="${result.data.avatar_url}"/>`))
 ```
 
+## Front-End com Fetch
 
+> A API Fetch fornece uma interface JavaScript para acessar e manipular partes do pipeline HTTP.
 
+Antes de iniciarmos os projetos precisamos instalar algumas dependências:
 
+- nodemon: É uma ferramenta usada para reinicar automaticanete o servidor quando as alterações de arquivo no diretório são detectadas. `npm install --save-dev nodemon `
+- cors: É um mecanismo utilizado pelos navegadores para compartilhar recursos entre diferentes origens `npm install cors`
 
+### Criando arquivo Html
 
+Vamos criar um arquivo html para melhor estruturar os dados (resultados) expsotos pela API.
 
+```html
 
+<!--index.html-->
+<div id="renderApiResult"></div>
+
+```
+
+Dica: Se você escrever "#renderApiResult" e der um tab, por meio do Emmit Abreviation você cria uma div com esse id.
+
+## Criando e Configurando o arquivo JS - Fetch e Axios
+
+- Para a criação da nossa API utilizamos a estrutura criada por rocketseat dispostas no arquivo "server.js". Nele, está esquematizado toda a lógica dos métodos http (get, post,put...).
+- Para o consumo dos dados usamos a API Fetch no arquivo "main.js".
+- Obs: Como o Axios é um cliente HTTP, então ele pode acessar diretamente os métodos http (axios.get,axios.post...). Diferentemente do Fetch que funciona mais para buscar e, por meio da sua configuração (method: "POST") que vamos decidir qual tipo de busca ele vai fazer.
+
+## Conclusão
+
+Por meio deste curso pudemos aprender a criar nossas apis e consumí-las com Axios e Fetch, além de renderizar suas respostas no html. Ou seja, houve manipulação no front e backend.
 
 ## Referências
 
 - https://json.org/json-pt.html
+- https://www.npmjs.com/package/axios
 - https://www.w3schools.com/whatis/whatis_json.asp
 - https://expressjs.com/pt-br/
 - https://developer.mozilla.org/pt-BR/docs/Learn/Server-side/Express_Nodejs
 - https://hcode.com.br/blog/usando-insomnia-para-testar-as-requisicoes-de-nossas-apis
+- https://www.npmjs.com/package/cors
+- https://www.npmjs.com/package/nodemon
+- https://www.ibm.com/br-pt/topics/data-pipeline
+- https://www.atlassian.com/br/git/tutorials/saving-changes/gitignore
+- https://docs.github.com/pt/rest/overview/resources-in-the-rest-api?apiVersion=2022-11-28
+- https://developerplus.com.br/o-que-sao-arrow-functions-e-como-usar/#:~:text=A%20Arrow%20Function%20%C3%A9%20caracterizada%20por%20uma%20seta,a%20mesma%20coisa%2C%20mas%20com%203%20nota%C3%A7%C3%B5es%20diferentes.
