@@ -413,6 +413,67 @@ app.route('/about/user').get((req,res) => res.send(req.query)) // vamos mostrar 
 }
 ```
 
+## API DO GITHUB 
+
+> É uma api disponibilizada pela github com seus próprios dados.
+
+- Para acessar as informações que regem essa api é só endereçar no navegador: https://docs.github.com/pt/rest/overview/resources-in-the-rest-api?apiVersion=2022-11-28
+- A api de fato é acessada pelo link: https://api.github.com/
+    - Aqui pode-se vê vários recursos que ela pode disponibilizar como os usuários, repositórios, emojis e afins.
+    - Ao acessarmos as infos sobre os usuários, por exemplo, colocamos https://api.github.com/users/{user}, no qual as {} representam o nome do usuário - https://api.github.com/users/samarasilvia81
+- São exibidos os dados quando colocamos qualquer URL no navegador dessa api, porque são informações públicas. Para acessar os dados privados é preciso informar a api do github que eu sou o usuário. 
+- Da mesma forma, para fazer os métodos put, post... é preciso estar autenticado.
+
+## Consumindo API do Github dentro do BackEnd Node + Axios
+
+Express não faz requisição de API. A gente usa para criar a API, fazer as rotas e afins. Mas ele por si só não tem um método para ir e uma api e buscar os resultados dela (a não ser a nossa própria api). Então, vamos usar outro módulo o - AXIOS -.
+
+- Instalação: `npm i axios`
+- Precisamos importar o axios no nosso arquivo js para que ele junto com o express possam trabalhar na api do github.
+
+```js
+const axios = require('axios');
+```
+
+- Tendo importando, vamos usar o método get do axios para puxar os dados da api do github dentro da rota que estabelecemos com o express.
+
+```js
+app.route('/').get((req,res) => {
+    axios.get('https://api.github.com/users/samarasilvia81')
+})
+```
+
+- Como o axios trabalha com promises, então terá .then,.catch...
+- O axios quando trabalha com API ele traz como resultado várias informações e uma delas chamada "data" que está a resposta da URL.
+
+```js
+
+app.route('/').get((req,res) => {
+    axios.get('https://api.github.com/users/samarasilvia81')
+    .then(result => res.send(result.data))
+    // .then(result => res.send(result.data.avatar_url)) // caso queira informações especifícas.
+    // .then(result => res.send(`<img src="${result.data.avatar_url}"/>`)) // dessa forma a própria imagem é exibida
+    .catch(error => console.error(error))
+})
+
+```
+
+- Então, vimos com o exemplo passado que podemos passar tags html com o axios.
+- Para isso é só colocar `crases` e as variáveis dentro de template strings.
+
+```js
+// Tags HTML com Axios
+.then(result => res.send(`<img src="${result.data.avatar_url}"/>`))
+```
+
+
+
+
+
+
+
+
+
 ## Referências
 
 - https://json.org/json-pt.html
