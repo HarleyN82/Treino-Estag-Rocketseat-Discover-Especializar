@@ -13,3 +13,6 @@
 - SQL_Avançado - Nessa parte, desenvolvemos mais nossas habilidades no banco de dados, usando o SLite e alguns comandos avançados, incluindo - InsertTO - Join - GroupBy - e outros...
 - Transition_Animation - Este módulo, é voltado para habilidades e saberes no CSS.
 - TypeScript - 
+
+## Registro
+- Todas as Aulas: 27/01/23 - ...
