@@ -1,6 +1,6 @@
 ![ROCKETSEATESPECIALIZAR](https://user-images.githubusercontent.com/113690864/221011165-4347b0bc-6299-42ed-a355-1c0bbec8a518.gif)
 <br><br><br>
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&width=435&lines=💜Trilha+do+Estagiário!+Especializar;React,Node,TypeScript,JS+e+mais!&pause=1000&color=a694ff&width=435)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&width=435&lines=💜Trilha+do+Estagiário!+Especializar;React+-+Node+-+TypeScript+-+JS+e+mais!&pause=1000&color=a694ff&width=435)](https://git.io/typing-svg)
 
 ## Curso Fullstack FrontEnd - Fase 02 - Avançada
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=a694ff&style=for-the-badge)
