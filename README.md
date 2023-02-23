@@ -16,3 +16,4 @@
 
 ## Registro
 - Todas as Aulas: 27/01/23 - ...
+- Ao todo foram 7 módulos, equivalente a um curso de x horas.
