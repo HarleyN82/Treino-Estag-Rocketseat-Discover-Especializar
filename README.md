@@ -9,6 +9,6 @@
 
 - API - Nesse módulo aprenderemos como criar uma API com o NodeJS + ExpressJS, além de poder manipulá-la no back-end e no front.
 - Assincronismo - Aqui aprendemos sobre promises e como podemos usá-las com API Fetch, Axios e na forma Async/Await.
-- SQL_Avançado - Nessa parte, desenvolvemos mais nossas habilidades no banco de dados, usando o SLite e alguns comandos avançados, incluindo `InsertTO - Join - GroupBy` e outros...
+- SQL_Avançado - Nessa parte, desenvolvemos mais nossas habilidades no banco de dados, usando o SLite e alguns comandos avançados, incluindo - InsertTO - Join - GroupBy - e outros...
 - Transition_Animation - Este módulo, é voltado para habilidades e saberes no CSS.
 - TypeScript - 
