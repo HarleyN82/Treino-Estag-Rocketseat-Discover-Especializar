@@ -7,7 +7,7 @@
 
 <br>
 
-- j
+- API - Nesse módulo aprenderemos como criar uma API com o NodeJS + ExpressJS, além de poder manipulá-la no back-end e no front.
 - j
 - j
 - j
