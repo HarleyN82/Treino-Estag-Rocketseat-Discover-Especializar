@@ -494,6 +494,101 @@ export function Card({name,time}) {
 
 Lembrando que toda essa configuração é manual e não está lincada com o botão de click.
 
+## Estado (Use State)
+
+> O Hook useState permite ter variáveis em componentes funcionais. Você passa o estado inicial para esta função e ele retorna uma variável com o valor atual do estado (não necessariamente o estado inicial).
+
+A diferença entre uma variável e um estado....
+
+- **onChange:** Toda vez que o conteúdo do input muda ele me entrega um evento e dentro dele executar uma ação.
+
+A forma como está aqui não vai alterar a nossa interface de forma automática e associativa ao digitarmos no input.
+
+```jsx
+
+import "./styles.css";
+import { Card } from "../../components/Card";
+
+export function Home() {
+
+  let studentName = '';
+
+  function handleNameChange(name){
+    studentName = name;
+  }
+
+  return (
+   <div className='container'>
+     <h1>Nome: {studentName} </h1>
+      <input 
+        type="text" 
+        placeholder="Digite o nome..."
+        onChange={e => handleNameChange(e.target.value)} // Acessaremos o valor de dentro do input
+      />
+      <button type="button">Adicionar</button>
+      <Card name="Thomas" time="10:55:25"/>
+      <Card name="Emma" time="11:00:10"/>
+      <Card name="Matheus" time="11:30:25"/>
+      <Card name="Scarlet" time="12:15:35"/>
+   </div>
+  )
+}
+
+``` 
+
+Quando queremos utilizar o conteúdo de uma variável para refletir na nossa interface, então precisamos de um estado. 
+
+Variável pode ser usada para armazenar valores, fazer cáculos e afins. Mas um estado toda vez que muda vai gerar uma nova renderizar na nossa interface.
+
+Isso porque, o react tem um algoritmo de reconciliação e consegue verificar a árvore de elementos da dom e vê o que mudou ou não.
+
+UseState: É um hook que premite criar um estado.
+
+A sua estrutura é, contendo dois elementos:
+
+`const [studentName,setstudentName] = useState();`
+
+- studentName: Armazenar o valor da variável atual; (O estado em si)
+- setStudentName: Função que atualiza esse estado.
+
+Dessa forma, estamos pegando o valor atual do input e atualizando o nosso estado através desse set.
+
+Além do que, podemos passar um vlaor inicial pro estado. Por exemplo, se fosse criar um contato o valor inicial seria `useState(0)`.
+
+```jsx
+
+import React, { useState } from "react";
+
+import "./styles.css";
+import { Card } from "../../components/Card";
+
+export function Home() {
+  const [studentName, setStudentName] = useState("");
+
+  return (
+    <div className="container">
+      <h1>Nome: {studentName}</h1>
+      <input
+        type="text"
+        placeholder="Digite o nome..."
+        onChange={(e) => setStudentName(e.target.value)}
+      />
+      <button type="button">Adicionar</button>
+
+      <Card name="Rodrigo" time="10:55:25" />
+      <Card name="João" time="11:00:10" />
+      <Card name="Ana" time="12:10:33" />
+    </div>
+  );
+}
+
+```
+
+- **Resultado:**
+
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estado.gif">
+
+
 ## Referências
 
 - https://dev.to/lixeletto/vite-js-o-build-tool-que-vai-facilitar-a-sua-vida-15ho
