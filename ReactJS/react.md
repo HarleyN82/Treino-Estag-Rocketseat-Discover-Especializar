@@ -180,25 +180,27 @@ Obs: Cada arquivo que criamos vamos ser grandes funções que tem como objetivo 
 
 📁 src - Pasta principal onde ficará todos os nossos arquivos.
 
-**App.css** - Arquivo de estilização do App.jsx App.jsx - Página inicial do nosso projeto que será exibida no navegador.
+- **App.css** - Arquivo de estilização do App.jsx.
 
-**favicon.svg** - Ícone de favorito da página. index.css - Arquivo de estilização global logo.svg - Arquivo de imagem da logo do ReactJS. main.jsx - Arquivo responsável por inicializar nossa aplicação.
+- **App.jsx** - Página inicial do nosso projeto que será exibida no navegador. Loog, arquivo com a interface já criada
 
-**index.html** - Arquivo HTML onde será injetado todo o JavaScript que for compilado para ser exibido no navegador.
+- **favicon.svg** - Ícone de favorito da página. index.css - Arquivo de estilização global.
 
-**main.jsx** - Arquivo responsável pela inicialização do nosso projeto.
+- **logo.svg**- Arquivo de imagem da logo do ReactJS. 
 
-**App.jsx** - Arquivo com a interface já criada.
+- **main.jsx** - Arquivo responsável por inicializar nossa aplicação.
 
-**.gitignore** - Esse arquivo descreve quais arquivos e pasta não devem subir para o Github. package.json - Arquivo responsável pelas dependências do nosso projeto. Contém informações do pacote, como: scripts, dependências, número de versão e etc...
+- **index.html** - Arquivo HTML onde será injetado todo o JavaScript que for compilado para ser exibido no navegador.
 
-**package.json** - Arquivo que contém as informações base do nosso projeto, como o autor, dependências, número de versões, quais scripts serão usados para debug, se é um projeto privado e afins. 
+- **.gitignore** - Esse arquivo descreve quais arquivos e pasta não devem subir para o Github.
+
+- **package.json** - Arquivo responsável pelas dependências do nosso projeto. Contém informações do pacote, como: scripts, dependências, número de versão e etc...
 
 No caso, é um arquivo de configuração utilizado para estipular e configurar dependências do seu projeto (quais outros pacotes ele vai precisar para ser executado) e scripts automatizados. Através dele conseguimos deixar claro uma "receita" para executar um projeto.
 
-**package-lock.json** - Parecido com o package.json, esse arquivo descreve as características das dependências do projeto como versão, integridade dos links e muito mais.
+- **package-lock.json** - Parecido com o package.json, esse arquivo descreve as características das dependências do projeto como versão, integridade dos links e muito mais.
 
-**vite.config.js** - Arquivo de configuração do Vite.
+- **vite.config.js** - Arquivo de configuração do Vite.
 
 ## Fragment
 
@@ -263,9 +265,234 @@ ReactDOM.render(
 
 ```
 
-🔅 <p style="color:blueviolet">SOS</p>
-**Dica:** Diferentemente dos outros arquivos no CSS precisamos colocar uma extensão.
+🔅 **Dica:** Diferentemente dos outros arquivos no CSS precisamos colocar uma extensão.
 
+Quando usamos uma função sem a estrutra "export default nomeDoArquivo" e colocamos diretamente "exprot function...", precisamos no arquivo "main.jsx" colcocar na importação do arquivo {nomeDoArquivo}.
+
+## Estilizando Página CSS
+
+Nesta aula, estilizamos toda a nossa página utilizando os conceitos do CSS.
+
+```css
+
+/*styles.css*/
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container h1 {
+  margin: 84px 0 24px;
+}
+
+.container input {
+  width: 50%;
+  padding: 24px;
+
+  background: #e6e6e6;
+  border-radius: 5px;
+  border: none;
+
+  font-size: 16px;
+}
+
+.container button {
+  width: 50%;
+  padding: 24px;
+
+  font-weight: 700;
+
+  background: #ea4c89;
+  color: #fff;
+
+  border-radius: 5px;
+  margin: 12px 0 84px;
+  border: none;
+
+  cursor: pointer;
+  transition: filter 0.2s;
+
+  font-size: 16px;
+}
+
+.container button:hover {
+  filter: brightness(0.9);
+}
+
+```
+
+**Resultado:**
+
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estilizando-pagina-css.png">
+
+## Importando Fonte
+
+Para utilizar fontes personalizadas em nosso projeto, podemos prover do serviço que a Google nos oferece, o Google Fonts.
+
+Após a escolha das fontes, devemos aplicá-las em nosso projeto em dois arquivos:
+
+- index.html
+
+```HTML
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- Importação das fontes. -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <title>App Lista de Presença</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>
+
+```
+
+- global.css
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Aplicando fontes personalizada. */
+
+body,
+input,
+button {
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+
+  --webkit-font-smoothing: antialiased;
+}
+
+```
+
+**Resultado:**
+
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/importando-fonte.png">
+
+
+## Componentes
+
+> Componente nada mais do que um bloco de código reutilizável e independente. Nessa aula, criamos o nosso primeiro componente Card
+
+Estrutura de um componente:
+
+📁 Components 
+📁 Card
+
+```jsx
+
+import "./styles.css";
+
+export function Card() {
+  return (
+    <div className="card">
+      <strong>João Inácio</strong>
+      <small>10:15:24</small>
+    </div>
+  );
+}
+```
+
+- styles.css
+
+```css 
+
+.card {
+  height: 100%;
+  width: 50%;
+
+  background: #735bf2;
+  color: #fff;
+
+  border-radius: 10px;
+  margin-bottom: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+.card strong {
+  font-size: 18px;
+}
+
+```
+
+**Resultado:**
+
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/componentes.png">
+
+## Propriedades
+
+> As propriedades dentro de um componente faz com que você possa passar valores diferentes para cada um deles.
+
+- Componente Card: 
+
+```jsx
+import "./styles.css";
+
+export function Card(props) {
+  return (
+    <div className="card">
+      <strong>{props.name}</strong>
+      <small>{props.time}</small>
+    </div>
+  );
+}
+```
+
+- Renderização do componente Card:
+
+```jsx
+
+<Card name="Rodrigo" time="10:55:25" />
+<Card name="João" time="11:00:10" />
+<Card name="Ana" time="12:10:33" />
+
+```
+
+Cada componente está sendo renderizado de acordo com as propriedades que estão sendo passadas. No caso, temos 4 o mesmo componente, mas com propriedades diferentes.
+
+Nós podemos também desestruturar, colocando {} nos parâmetros e ao invés de colocar um meio termo para acessar as propriedades "props" você as chama diretamente, por exemplo:
+
+```jsx
+import "./styles.css";
+
+export function Card({name,time}) {
+  return (
+    <div className="card">
+      <strong>{name}</strong>
+      <small>{time}</small>
+    </div>
+  );
+}
+```
+
+- **Resultado:**
+
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/propriedades.png">
+
+Lembrando que toda essa configuração é manual e não está lincada com o botão de click.
 
 ## Referências
 
