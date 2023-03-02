@@ -323,7 +323,7 @@ Nesta aula, estilizamos toda a nossa página utilizando os conceitos do CSS.
 
 ```
 
-**Resultado:**
+- **Resultado:**
 
 <img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estilizando-pagina-css.png">
 
@@ -384,7 +384,7 @@ button {
 
 ```
 
-**Resultado:**
+- **Resultado:**
 
 <img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/importando-fonte.png">
 
@@ -438,9 +438,10 @@ export function Card() {
 
 ```
 
-**Resultado:**
+- **Resultado:**
 
 <img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/componentes.png">
+
 
 ## Propriedades
 
@@ -542,14 +543,11 @@ Variável pode ser usada para armazenar valores, fazer cáculos e afins. Mas um 
 
 Isso porque, o react tem um algoritmo de reconciliação e consegue verificar a árvore de elementos da dom e vê o que mudou ou não.
 
-UseState: É um hook que premite criar um estado.
+- **UseState:** É um hook que premite criar um estado.
 
-A sua estrutura é, contendo dois elementos:
-
-`const [studentName,setstudentName] = useState();`
-
-- studentName: Armazenar o valor da variável atual; (O estado em si)
-- setStudentName: Função que atualiza esse estado.
+A sua estrutura é, contendo dois elementos: `const [studentName,setstudentName] = useState();`
+  - studentName: Armazenar o valor da variável atual; (O estado em si)
+  - setStudentName: Função que atualiza esse estado.
 
 Dessa forma, estamos pegando o valor atual do input e atualizando o nosso estado através desse set.
 
@@ -588,7 +586,113 @@ export function Home() {
 
 <img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estado.gif">
 
+## Imutabilidade
 
+> O conteúdo da variável não deve ser modificado e sim substituído. Ou seja, é o princípio que os estados do React respeita. É mais performático.
+
+Ela faz parte do paradigma da programação funcional.
+
+Devido ao seu carácter performático, não alteramos um estado diretamente, mas usamos uma função para isso.
+
+- index.jsx
+
+```jsx
+
+import React, {useState} from 'react';
+import './styles.css'
+
+// Importanto Componentes
+
+import { Card } from '../../components/Card'
+
+export function Home() {
+
+  const [studentName, setStudentName] = useState();
+  const [students, setStudent] = useState([]); // Vai se armazenar os estudantes da lista de presença
+
+  function handleAddStudent(){
+
+    const newStudent = {
+      name: studentName,
+      time: new Date().toLocaleTimeString("pt-br",{
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      })
+    };
+
+    setStudent(prevState => [...prevState, newStudent]);
+
+    // Preciso recuperar os dados antes + juntar com os novos
+    // Pode-se colocar qualquer nome como state...
+    // Nesse caso, respeitando a imutabilidade estamos substituindo o valor inteiro
+    // Spread Operator =  Permite espalhar um array em locais onde se espera múltiplos parâmetros.
+    // Pega o conteúdo anterior do seu estado e coloca nessa variável, se não vai ficar assim: (teste sem o (...))
+    // ['Rodrigo]
+    // [['Rodrigo], Amanda] = O conteúdo anterior que já é um vetor + o novo.
+    // Da forma como fizemos tudo fica no mesmo vetor.
+
+  }
+
+  return (
+   <div className='container'>
+     <h1>Lista de Presenças</h1>
+      <input 
+        type="text" 
+        placeholder="Digite o nome..."
+        onChange={e => setStudentName(e.target.value)} // Acessaremos o valor de dentro do input
+      />
+
+      {/*Como a função não tem parâmetro, então só precisa chamá-la*/}
+      <button type="button" onClick={handleAddStudent}>
+        Adicionar
+      </button>
+
+      {/* Ao fazermos isso estamos informando que queremos usar o conteúdo de uma variável*/}
+      {
+        // Map - A cada iteração vai rodar um estudante
+        // Para cada estudante eu quero renderizar um cartão
+        // Student é apenas uma variável auxiliadora
+
+        students.map(student => <Card name={student.name} time={student.time}/>)
+
+      }
+   </div>
+  )
+}
+
+```
+
+- **Resultado:**
+
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/imutabilidade.gif">
+
+## Key Prop
+
+> Em uma listagem, normalmente utilizamos o map() do JavaScript para trazer todos os dados dessa lista. No React, precisamos passar uma propriedade key para que esse dado nunca se repita e evitar que erros desse tipo aconteçam.
+
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/key-prop.png">
+
+Usamos uma Key Prop para as listagens ficarem mais performáticas, principalemnte quando precisar deletar ou ajudar o react quando precisar uma análise dos componentes para saber qual componente foi ou não afetado por um estado e etc...
+
+Outra coisa, a key precisa ser única. Então, o ideal seria utilizar um ID.
+
+Para evitar esse tipo de erro, passamos a prop Key, veja o exemplo:
+
+## Hooks
+
+> São funções que permitem ligar conectar os recursos de estados e ciclos de vida do React a partir de componentes funcionais. Normalmente os Hooks iniciam com a palavra use por convenção. Exemplos de hooks: useState, useEffect.
+
+A motivação de sua criação foi que: Anterioremente, era comum o uso de classes, mas agora é recomendado o uso de funções (funcionais).
+
+E para beneficiar os desenvolvedores de forma completa foi, então criado hooks, funções mais simples, independentes e flexíveis.
+
+Como padrão sua estrutura é: `use + nomeDoHook`.
+
+## Header
+## useEffect
+## Consumindo API
+## useEffect Async
 ## Referências
 
 - https://dev.to/lixeletto/vite-js-o-build-tool-que-vai-facilitar-a-sua-vida-15ho
