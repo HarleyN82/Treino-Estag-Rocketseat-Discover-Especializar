@@ -1,0 +1,8 @@
+/* O * pode ser usado para resetar informações globais estilizantes da nossa interface*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: red;
+}
