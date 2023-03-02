@@ -21,8 +21,9 @@ Ao criar um projeto utilizando o React JS podemos utilizar os seguintes boilerpl
 ## Quais as vantagens de utilziar Vite ao invés do CRA ?
 
 O Vite tem todos os recursos do CRA, mas com melhores implementações e recursos adicionais que o CRA não suporta, com isso o Vite acaba sendo até 10x mais rápido em comparação ao CRA.
-
-</> **Criando o primeiro projeto com o Vite:**
+![Thiago Marinho](https://pbs.twimg.com/profile_banners/41742474/1490016588/1500x500)
+  <img alt="NextLevelWeek" title="#NextLevelWeek" src="[./assets/banner.png](https://user-images.githubusercontent.com/113690864/222425069-d1b2deb3-ccce-44f8-b64d-650a98a6fc4c.png)" style="heigth:"200""/>
+![code](https://user-images.githubusercontent.com/113690864/222425069-d1b2deb3-ccce-44f8-b64d-650a98a6fc4c.png/200x200) **Criando o primeiro projeto com o Vite:**
 `npm create vite@latest reactapp --template react`
 
 Após rodar o comando acima, será exibido a tela para escolher o framework que deseja utilizar.
