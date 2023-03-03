@@ -823,8 +823,16 @@ export function Home() {
 
 ## useEffect
 
+> O useEffect é executado automaticamente sempre que o componente é renderizado.
 
+A estrutura do useEffect é da seguinte forma:
 
+```js
+useEffect(() => {
+ // Dentro do objeto devemos colocar todas ações que serão executadas.
+// Os arrays definem quais os estados que o useEffect depende.
+}, []);
+```
 
 
 

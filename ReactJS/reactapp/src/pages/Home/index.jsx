@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './styles.css'
 
 // Importanto Componentes
@@ -25,27 +25,39 @@ export function Home() {
 
   }
 
-  return (
-   <div className='container'>
-     <h1>Lista de Presenças</h1>
-      <input 
-        type="text" 
-        placeholder="Digite o nome..."
-        onChange={e => setStudentName(e.target.value)} 
-      />
+  useEffect(() => {
+    // corpo do useEffect
+  },[]);
 
-      <button type="button" onClick={handleAddStudent}>
-        Adicionar
-      </button>
-      {
-        students.map(student => (
-          <Card 
-            key={student.time}
-            name={student.name} 
-            time={student.time}
-          />)
-        )
-      }
-   </div>
+  return (
+  <div className='container'>
+
+    <header>
+      <h1>Lista de Presenças</h1>
+      <div>
+        <strong>Samara</strong>
+        <img src="https://github.com/samarasilvia21.png" alt="Foto de Perfil" />
+      </div>
+    </header>
+    
+    <input 
+      type="text" 
+      placeholder="Digite o nome..."
+      onChange={e => setStudentName(e.target.value)} 
+    />
+
+    <button type="button" onClick={handleAddStudent}>
+      Adicionar
+    </button>
+    {
+      students.map(student => (
+        <Card 
+          key={student.time}
+          name={student.name} 
+          time={student.time}
+        />)
+      )
+    }
+  </div>
   )
 }
