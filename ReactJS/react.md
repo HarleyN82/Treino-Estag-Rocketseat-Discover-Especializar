@@ -621,6 +621,8 @@ export function Home() {
       })
     };
 
+    // Sem esse recurso o sistema funcionava susbtituindo os estudantes que eram adicionados na nossa lista, ou seja, ele respeitava a imutabilidade. Mas como a gente queria a sensação de mudança, fizemos essa estrutura, recuperando o que eu tinha antes e colocando o novo.
+
     setStudent(prevState => [...prevState, newStudent]);
 
     // Preciso recuperar os dados antes + juntar com os novos
@@ -643,12 +645,12 @@ export function Home() {
         onChange={e => setStudentName(e.target.value)} // Acessaremos o valor de dentro do input
       />
 
-      {/*Como a função não tem parâmetro, então só precisa chamá-la*/}
+      {/*Como a função não tem parâmetro, então só precisa chamá-la e nem precisar colocar () */}
       <button type="button" onClick={handleAddStudent}>
         Adicionar
       </button>
 
-      {/* Ao fazermos isso estamos informando que queremos usar o conteúdo de uma variável*/}
+      {/* Ao fazermos isso (envolver o card com {} ) estamos informando que queremos usar o conteúdo de uma variável*/}
       {
         // Map - A cada iteração vai rodar um estudante
         // Para cada estudante eu quero renderizar um cartão
@@ -662,6 +664,10 @@ export function Home() {
 }
 
 ```
+
+Fizemos essa função para que pudessemos adicionar vários alunos e de forma automática gerar o card, configurado automaticamente com o tempo atual. 
+
+Antes estávamos fazendo tudo de maneira manual, então usamos esse princípio da imutabildiade para automatizar esse processo.
 
 - **Resultado:**
 
@@ -690,7 +696,140 @@ E para beneficiar os desenvolvedores de forma completa foi, então criado hooks,
 Como padrão sua estrutura é: `use + nomeDoHook`.
 
 ## Header
+> Nessa aula, criamos uma tag <header> em nossa Home para indicar quem é o usuário que está editando a lista de presença.
+
+- **index.jsx**
+
+```jsx
+
+import React, { useState } from "react";
+
+import "./styles.css";
+import { Card } from "../../components/Card";
+
+export function Home() {
+  const [studentName, setStudentName] = useState("");
+
+  const [students, setStudents] = useState([]);
+
+  function handleAddStudent() {
+    const newStudent = {
+      name: studentName,
+      time: new Date().toLocaleTimeString("pt-BR", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      }),
+    };
+
+    setStudents((prevState) => [...prevState, newStudent]);
+  }
+
+  return (
+    <div className="container">
+      <header>
+        <h1>Lista de Presença</h1>
+        <div>
+          <strong>João Inácio</strong>
+          <img src="https://github.com/birobirobiro.png" alt="Foto de perfil" />
+        </div>
+      </header>
+      <input
+        type="text"
+        placeholder="Digite o nome..."
+        onChange={(e) => setStudentName(e.target.value)}
+      />
+      <button type="button" onClick={handleAddStudent}>
+        Adicionar
+      </button>
+
+      {students.map((student) => (
+        <Card key={student.time} name={student.name} time={student.time} />
+      ))}
+    </div>
+  );
+}
+
+```
+
+- **styles.css**
+
+```css
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container header {
+  width: 50%;
+  margin: 84px 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container header img {
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  margin-left: 7px;
+}
+
+.container header div {
+  display: flex;
+  align-items: center;
+}
+
+.container input {
+  width: 50%;
+  padding: 24px;
+
+  background: #e6e6e6;
+  border-radius: 5px;
+  border: none;
+
+  font-size: 16px;
+}
+
+.container button {
+  width: 50%;
+  padding: 24px;
+
+  font-weight: 700;
+
+  background: #ea4c89;
+  color: #fff;
+
+  border-radius: 5px;
+  margin: 12px 0 84px;
+  border: none;
+
+  cursor: pointer;
+  transition: filter 0.2s;
+
+  font-size: 16px;
+}
+
+.container button:hover {
+  filter: brightness(0.9);
+}
+
+```
+
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/header.png">
+
+
 ## useEffect
+
+
+
+
+
+
+
+
 ## Consumindo API
 ## useEffect Async
 ## Referências
