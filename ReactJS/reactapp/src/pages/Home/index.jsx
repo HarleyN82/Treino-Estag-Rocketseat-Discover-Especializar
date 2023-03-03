@@ -26,8 +26,8 @@ export function Home() {
   }
 
   useEffect(() => {
-    // corpo do useEffect
-  },[]);
+    console.log("useEffect foi chamado")
+  },[students]);
 
   return (
   <div className='container'>

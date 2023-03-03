@@ -834,6 +834,9 @@ useEffect(() => {
 }, []);
 ```
 
+Quando o array está vazio significa que o useEffect será executado apenas uma única vez, no caso quando a nossa tela for renderizada. 
+
+Mas se colocarmos um estado dentro dele e esse estado for atualizado, então o useEffect também será.
 
 
 
