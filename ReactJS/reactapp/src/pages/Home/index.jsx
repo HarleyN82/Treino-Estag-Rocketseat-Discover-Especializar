@@ -9,6 +9,7 @@ export function Home() {
 
   const [studentName, setStudentName] = useState();
   const [students, setStudent] = useState([]); 
+  const [user, setUser] = useState({name:'', avatar:''})
 
   function handleAddStudent(){
 
@@ -26,17 +27,28 @@ export function Home() {
   }
 
   useEffect(() => {
-    console.log("useEffect foi chamado")
-  },[students]);
-
+    async function fetchData() {
+      const response = await fetch('https://api.github.com/users/samarasilvia21')
+      const data = await response.json();
+      console.log("DADOS: ", data);
+      setUser({
+        name: data.name,
+        avatar: data.avatar_url,
+    });
+  }
+  
+  fetchData();
+  
+  },[]);
+  
   return (
   <div className='container'>
 
     <header>
       <h1>Lista de Presenças</h1>
       <div>
-        <strong>Samara</strong>
-        <img src="https://github.com/samarasilvia21.png" alt="Foto de Perfil" />
+        <strong>{user.name}</strong>
+        <img src={user.avatar} alt="Foto de perfil" />
       </div>
     </header>
     

@@ -838,11 +838,146 @@ Quando o array está vazio significa que o useEffect será executado apenas uma 
 
 Mas se colocarmos um estado dentro dele e esse estado for atualizado, então o useEffect também será.
 
+```jsx
 
+useEffect(() => {
+  console.log('useEffect foi chamado')
+},[students]);
 
+```
 
 ## Consumindo API
+
+> Nessa aula utilizamos a API oficial do Github dentro do useEffect com o método fecth().
+
+Com o intuito, de tornar dinâmica e automatizada o nosso header, pois até agora ele foi feito de forma manual.
+
+**API:** https://api.github.com/users/[seu usuário] (substituir pelo seu usuário sem os [] )
+
+```jsx
+import React, {useState, useEffect} from 'react';
+import './styles.css'
+
+// Importanto Componentes
+
+import { Card } from '../../components/Card'
+
+export function Home() {
+
+  const [studentName, setStudentName] = useState();
+  const [students, setStudent] = useState([]); 
+  const [user, setUser] = useState({name:'', avatar:''})
+
+  function handleAddStudent(){
+
+    const newStudent = {
+      name: studentName,
+      time: new Date().toLocaleTimeString("pt-br",{
+        hour: '2-digit',
+        minute: '2-digit', 
+        second: '2-digit'
+      })
+    };
+
+    setStudent(prevState => [...prevState, newStudent]);
+
+  }
+
+  useEffect(() => {
+    fetch('https://api.github.com/users/samarasilvia21')
+    .then(response => response.json())
+    .then(data => {
+      setUser({
+        name: data.name,
+        avatar: data.avatar_url
+      })
+      console.log(data);
+    })
+    .catch(e => console.log(e))
+  },[students]);
+
+  return (
+  <div className='container'>
+
+    <header>
+      <h1>Lista de Presenças</h1>
+      <div>
+        <strong>{user.name}</strong>
+        <img src={user.avatar} alt="Foto de perfil" />
+      </div>
+    </header>
+    
+    <input 
+      type="text" 
+      placeholder="Digite o nome..."
+      onChange={e => setStudentName(e.target.value)} 
+    />
+
+    <button type="button" onClick={handleAddStudent}>
+      Adicionar
+    </button>
+    {
+      students.map(student => (
+        <Card 
+          key={student.time}
+          name={student.name} 
+          time={student.time}
+        />)
+      )
+    }
+  </div>
+  )
+}
+```
+
+Construímos um outro estado, justamente para quando a nossa página for renderizada esse estado "user" possa exibir, através do useEffect, automaticamente os dados do nosso perfil no git. Isso pois, um useState responde e impacta diretamente na nossa tela (reflete na nossa interface).
+
+Quando a nossa interface atualizar como não passamos nenhum estado específico o useEffect já será acionado. E nele tem as ações que precisam ser executadas que no caso, é a conexão do github com o nosso site, recebendo os dados de nomoDoUsuário e avatarDoUsuário, tudo isso dentro de um novo estado que criamos o "user" e "setUser", visando refletir esses dados na nossa interface.
+
 ## useEffect Async
+
+> Nessa aula verificamos como lidar com requisições assíncronas utilizando o Hook useEffect.
+
+Ou seja, nesse exemplo vamos usar o Async/Await ao invés do fetch para fazer as requisições.
+
+No useEffect não podemos definí-lo como assíncrono diretamente como fazemos com as outras funções, por exemplo: 
+
+```js
+async function start() {
+    try {
+        const result = await promessa2; // vamos pegar o resultado da espera de uma promessa
+        console.log(result);
+    } catch (e) {
+        console.log(e);
+    } finally {
+        console.log("rodar sempre");
+    }
+}
+```
+
+Para definirmos o useEffect como assíncrono precisaremos fazer da seguinte forma:
+
+```jsx
+
+useEffect(() => {
+  async function fetchData() {
+    const response = await fetch('https://api.github.com/users/samarasilvia21')
+    const data = await response.json();
+    console.log("DADOS: ", data);
+    setUser({
+      name: data.name,
+      avatar: data.avatar_url,
+  });
+}
+
+fetchData();
+
+},[]);
+
+```
+
+Fazemos dessa forma, forçando um assicnronismo, porque o useEffect propriamente dito não consegue fazer, então atribuimos o assincronismo para a função dentro do useEffect.
+
 ## Referências
 
 - https://dev.to/lixeletto/vite-js-o-build-tool-que-vai-facilitar-a-sua-vida-15ho
