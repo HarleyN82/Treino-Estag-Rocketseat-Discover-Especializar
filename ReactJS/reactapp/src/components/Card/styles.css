@@ -17,3 +17,25 @@
 .card strong{
     font-size: 18px;
 }
+
+/* width: 15%;
+    padding: 12px;
+*/
+
+.card button {
+    width: 10%;
+    padding: 20px;
+    font-weight: 700;
+
+    background-color: #4751b9; /*4751b9*/
+    color: #ffff;
+
+    border-radius: 5px;
+    margin: 84px 0 84px;
+    border: none;
+
+    cursor: pointer;
+    transition: filter 0.2s ;
+
+    font-size: 18px;
+}
