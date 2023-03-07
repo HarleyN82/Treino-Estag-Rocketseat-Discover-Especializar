@@ -12,15 +12,6 @@ export function Home() {
   const [isAddingStudent, setIsAddingStudent] = useState(false);
   const [user, setUser] = useState({name:'', avatar:''})
 
-  // Cada estudante
-  // students.map(student => console.log(student));
-
-  // Todos os estudantes
-  // console.log(students)
-
-  // Salvando no localStorage
-  // localStorage.setItem('students', JSON.stringify(students));
-
   useEffect(() => {
     const savedData = localStorage.getItem('students');
     if (savedData) {
@@ -35,7 +26,7 @@ export function Home() {
       alert('Please enter a student name')
       return;
     }
-
+  
     if(isAddingStudent) return;
     setIsAddingStudent(true);
 
@@ -49,8 +40,6 @@ export function Home() {
     };
 
     setStudent(prevState => [...prevState, newStudent]);
-
-    localStorage.setItem('students', JSON.stringify([...students, newStudent]));
 
     setTimeout(() => {
       console.log('You just can add student after 1s in each card')

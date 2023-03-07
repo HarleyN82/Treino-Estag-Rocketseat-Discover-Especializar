@@ -34,6 +34,8 @@ Colocamos "Template" para identificar que o projeto que estamos fazendo é React
 
 <img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/criando-o-projeto-2.png">
 
+⚠️ **Dica:** Se você for executar o código na sua máquina após dar um `git clone`, é só colocar no terminal `npm install`.
+
 ## Executando Projeto
 
 Existem duas maneiras de navegar até a pasta do seu projeto, pelo próprio terminal, utilizando o comando cd ou arrastando a pasta do projeto para dentro do VS Code.
@@ -202,6 +204,34 @@ No caso, é um arquivo de configuração utilizado para estipular e configurar d
 
 - **vite.config.js** - Arquivo de configuração do Vite.
 
+## Organizando o nosso ambiente
+
+Tendo estruturado e configurado o nosso ambiente de trabalho e tido ciência das estruturadas das pastas, vamos colcoar isso em prática no nosso projeto. 
+
+**Delete as pastas:**
+  - assets
+  - App.css
+  - index.css
+
+**Limpe:**
+  - App.jsx
+
+**Substitua:**
+  - "App.jsx" por "index.jsx"
+
+**Crie dentro do src:**
+  - Pasta chamada "components";
+    - arquivo dito "card.jsx";
+    - arquivo dito "styles.css";
+  - Pasta chamada "pages";
+    - Pasta chamada "home";
+       - arquivo dito "index.jsx";
+       - arquivo dito "styles.css";
+  - Pasta chamada "styles"
+    - arquivo chamado "global.css";
+
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estrutura-pastas-e-arquivos.png">
+
 ## Fragment
 
 > Um padrão comum no React é que um componente pode retornar múltiplos elementos. Os Fragmentos (Fragment) permitem agrupar uma lista de filhos sem adicionar nós extras ao DOM.
@@ -213,9 +243,9 @@ No caso, é um arquivo de configuração utilizado para estipular e configurar d
 function Home() {
   return (
     <>
-      <h1>Lista de Presença.</h1>
-      <input type="text" placeholder="Digite o nome..." />
-      <button type="button">Adicionar</button>
+      <h1>Presence List</h1>
+      <input type="text" placeholder="Type your name..." />
+      <button type="button">ADD</button>
     </>
   );
 }
@@ -234,7 +264,7 @@ Assim, o retorno dessa função um pacote com um único elemento embrulhados pel
 
 A importação de um arquivo global deverá ser realizada no arquivo main.jsx
 
-- global.css
+- **global.css**
 
 ```css
 
@@ -245,7 +275,7 @@ A importação de um arquivo global deverá ser realizada no arquivo main.jsx
 }
 
 ```
-- main.jsx
+- **main.jsx**
 
 ```jsx
 
@@ -267,15 +297,37 @@ ReactDOM.render(
 
 🔅 **Dica:** Diferentemente dos outros arquivos no CSS precisamos colocar uma extensão.
 
-Quando usamos uma função sem a estrutra "export default nomeDoArquivo" e colocamos diretamente "exprot function...", precisamos no arquivo "main.jsx" colcocar na importação do arquivo {nomeDoArquivo}.
+🔅 **Dica2:** Quando usamos uma função sem a estrutra "export default nomeDoArquivo" e colocamos diretamente "export function...", precisamos no arquivo "main.jsx" colocar na importação do arquivo {nomeDoArquivo}.
 
 ## Estilizando Página CSS
 
-Nesta aula, estilizamos toda a nossa página utilizando os conceitos do CSS.
+Nesta aula, estilizamos toda a nossa página (home) utilizando os conceitos do CSS.
+
+Para isso ocorrer, lembre-se de colocar <div> na page "home". E no react para colocarmos um nome de uma classe literalemnte endereçamos dessa forma `className`.
+
+- **index.jsx**
+
+```jsx
+
+// Page Home
+
+import React, {} from 'react'
+import '../home/App.css'
+
+export function Home() {
+  return (
+    <div className='container'>
+      <h1>Presence List</h1>
+      <input type="text" placeholder="Type your name..." />
+      <button type="button">ADD</button>
+    </div>
+  );
+}
+```
+
+- **styles.css** 
 
 ```css
-
-/*styles.css*/
 
 .container {
   display: flex;
@@ -348,9 +400,10 @@ Após a escolha das fontes, devemos aplicá-las em nosso projeto em dois arquivo
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!--https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap--->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
-  <title>App Lista de Presença</title>
+  <title>App Presence List</title>
 </head>
 
 <body>
@@ -362,9 +415,10 @@ Após a escolha das fontes, devemos aplicá-las em nosso projeto em dois arquivo
 
 ```
 
-- global.css
+- **global.css**
 
 ```css
+
 * {
   margin: 0;
   padding: 0;
@@ -377,7 +431,7 @@ body,
 input,
 button {
   font-size: 16px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Montserrat", sans-serif;
 
   --webkit-font-smoothing: antialiased;
 }
@@ -398,6 +452,8 @@ Estrutura de um componente:
 📁 Components 
 📁 Card
 
+- **index.jsx (card)**
+
 ```jsx
 
 import "./styles.css";
@@ -412,7 +468,7 @@ export function Card() {
 }
 ```
 
-- styles.css
+- **styles.css**
 
 ```css 
 
@@ -438,6 +494,32 @@ export function Card() {
 
 ```
 
+- **index.jsx (home)**
+
+```jsx
+
+import React, {} from 'react';
+import './styles.css'
+
+import {Card} from '../../components/card'
+
+export function Home() {
+  return (
+    <div className='container'>
+      <h1>Presence List</h1>
+      <input type="text" placeholder="Type your name..." />
+      <button type="button">ADD</button>
+
+      {/*Importanto o nosso card*/}
+      <Card/>
+    </div>
+  );
+}
+
+```
+
+❗É importante lembrar de colocar os imports...
+
 - **Resultado:**
 
 <img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/componentes.png">
@@ -447,7 +529,7 @@ export function Card() {
 
 > As propriedades dentro de um componente faz com que você possa passar valores diferentes para cada um deles.
 
-- Componente Card: 
+- **Componente Card:** 
 
 ```jsx
 import "./styles.css";
@@ -462,9 +544,11 @@ export function Card(props) {
 }
 ```
 
-- Renderização do componente Card:
+- **Renderização do componente Card:**
 
 ```jsx
+
+// home.jsx
 
 <Card name="Rodrigo" time="10:55:25" />
 <Card name="João" time="11:00:10" />
@@ -505,7 +589,11 @@ A diferença entre uma variável e um estado....
 
 A forma como está aqui não vai alterar a nossa interface de forma automática e associativa ao digitarmos no input.
 
+- **index.jsx**
+
 ```jsx
+
+// Page Home
 
 import "./styles.css";
 import { Card } from "../../components/Card";
@@ -546,14 +634,16 @@ Isso porque, o react tem um algoritmo de reconciliação e consegue verificar a 
 - **UseState:** É um hook que premite criar um estado.
 
 A sua estrutura é, contendo dois elementos: `const [studentName,setstudentName] = useState();`
-  - studentName: Armazenar o valor da variável atual; (O estado em si)
-  - setStudentName: Função que atualiza esse estado.
+  - **studentName:** Armazenar o valor da variável atual; (O estado em si)
+  - **setStudentName:** Função que atualiza esse estado.
 
 Dessa forma, estamos pegando o valor atual do input e atualizando o nosso estado através desse set.
 
 Além do que, podemos passar um vlaor inicial pro estado. Por exemplo, se fosse criar um contato o valor inicial seria `useState(0)`.
 
 ```jsx
+
+// Page home
 
 import React, { useState } from "react";
 
@@ -594,9 +684,11 @@ Ela faz parte do paradigma da programação funcional.
 
 Devido ao seu carácter performático, não alteramos um estado diretamente, mas usamos uma função para isso.
 
-- index.jsx
+- **index.jsx**
 
 ```jsx
+
+// Page home
 
 import React, {useState} from 'react';
 import './styles.css'
@@ -638,7 +730,7 @@ export function Home() {
 
   return (
    <div className='container'>
-     <h1>Lista de Presenças</h1>
+     <h1>Presence List</h1>
       <input 
         type="text" 
         placeholder="Digite o nome..."
@@ -647,7 +739,7 @@ export function Home() {
 
       {/*Como a função não tem parâmetro, então só precisa chamá-la e nem precisar colocar () */}
       <button type="button" onClick={handleAddStudent}>
-        Adicionar
+        ADD
       </button>
 
       {/* Ao fazermos isso (envolver o card com {} ) estamos informando que queremos usar o conteúdo de uma variável*/}
@@ -683,7 +775,20 @@ Usamos uma Key Prop para as listagens ficarem mais performáticas, principalemnt
 
 Outra coisa, a key precisa ser única. Então, o ideal seria utilizar um ID.
 
-Para evitar esse tipo de erro, passamos a prop Key, veja o exemplo:
+Para evitar esse tipo de erro, passamos uma **prop Key**, veja o exemplo:
+
+```jsx
+
+// Page home
+
+students.map(student => 
+  <Card 
+    key={student.time}
+    name={student.name} 
+    time={student.time}
+  />)
+
+```
 
 ## Hooks
 
@@ -701,6 +806,8 @@ Como padrão sua estrutura é: `use + nomeDoHook`.
 - **index.jsx**
 
 ```jsx
+
+// Page Home
 
 import React, { useState } from "react";
 
@@ -728,19 +835,19 @@ export function Home() {
   return (
     <div className="container">
       <header>
-        <h1>Lista de Presença</h1>
+        <h1>Presence List</h1>
         <div>
-          <strong>João Inácio</strong>
-          <img src="https://github.com/birobirobiro.png" alt="Foto de perfil" />
+          <strong>Nome qualquer</strong>
+          <img src="https://github.com/samarasilvia21.png" alt="Profile Github" />
         </div>
       </header>
       <input
         type="text"
-        placeholder="Digite o nome..."
+        placeholder="Type your name..."
         onChange={(e) => setStudentName(e.target.value)}
       />
       <button type="button" onClick={handleAddStudent}>
-        Adicionar
+        ADD
       </button>
 
       {students.map((student) => (
@@ -855,6 +962,9 @@ Com o intuito, de tornar dinâmica e automatizada o nosso header, pois até agor
 **API:** https://api.github.com/users/[seu usuário] (substituir pelo seu usuário sem os [] )
 
 ```jsx
+
+// Page Home
+
 import React, {useState, useEffect} from 'react';
 import './styles.css'
 
@@ -900,10 +1010,10 @@ export function Home() {
   <div className='container'>
 
     <header>
-      <h1>Lista de Presenças</h1>
+      <h1>Presence List</h1>
       <div>
         <strong>{user.name}</strong>
-        <img src={user.avatar} alt="Foto de perfil" />
+        <img src={user.avatar} alt="Profile Github" />
       </div>
     </header>
     
@@ -914,7 +1024,7 @@ export function Home() {
     />
 
     <button type="button" onClick={handleAddStudent}>
-      Adicionar
+      ADD
     </button>
     {
       students.map(student => (
@@ -963,7 +1073,7 @@ useEffect(() => {
   async function fetchData() {
     const response = await fetch('https://api.github.com/users/samarasilvia21')
     const data = await response.json();
-    console.log("DADOS: ", data);
+    console.log("DATAS: ", data);
     setUser({
       name: data.name,
       avatar: data.avatar_url,
@@ -977,6 +1087,646 @@ fetchData();
 ```
 
 Fazemos dessa forma, forçando um assicnronismo, porque o useEffect propriamente dito não consegue fazer, então atribuimos o assincronismo para a função dentro do useEffect.
+
+## Salvando Dados no Local Storage
+
+```jsx
+
+import React, {useState, useEffect} from 'react';
+import './styles.css'
+
+// Importanto Componentes
+
+import { Card } from '../../components/Card'
+
+export function Home() {
+
+  const [studentName, setStudentName] = useState();
+  const [students, setStudent] = useState([]); 
+  const [user, setUser] = useState({name:'', avatar:''})
+
+  // Cada estudante
+  // students.map(student => console.log(student));
+
+  // Todos os estudantes
+  // console.log(students)
+
+  // Salvando no localStorage
+  // localStorage.setItem('students', JSON.stringify(students));
+
+  useEffect(() => {
+    const savedData = localStorage.getItem('students');
+    if (savedData) {
+      setStudent(JSON.parse(savedData));
+    }
+  }, []);
+
+  function handleAddStudent(){
+
+    const newStudent = {
+      name: studentName,
+      time: new Date().toLocaleTimeString("en",{
+        hour: '2-digit',
+        minute: '2-digit', 
+        second: '2-digit'
+      })
+    };
+
+    setStudent(prevState => [...prevState, newStudent]);
+
+    localStorage.setItem('students', JSON.stringify([...students, newStudent]));
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('https://api.github.com/users/samarasilvia21')
+      const data = await response.json();
+      console.log("DATAS: ", data);
+      setUser({
+        name: data.name,
+        avatar: data.avatar_url,
+    });
+  }
+  fetchData();
+  },[]);
+
+  return (
+  <div className='container'>
+
+    <header>
+      <h1>Presence List</h1>
+      <div>
+        <strong>{user.name}</strong>
+        <img src={user.avatar} alt="Profile Github" />
+      </div>
+    </header>
+    
+    <input 
+      type="text" 
+      placeholder="Type your name..."
+      onChange={e => setStudentName(e.target.value)} 
+    />
+
+    <button type="button" onClick={handleAddStudent}>
+      ADD
+    </button>
+
+    {
+      students.map((student) => (
+        <Card 
+          key={student.time}
+          name={student.name} 
+          time={student.time}
+        />)
+      )
+    }
+  </div>
+  )
+}
+
+```
+
+## Alerta para input vazio
+
+```jsx
+
+// Page home
+import React, {useState, useEffect} from 'react';
+import './styles.css'
+
+// Importanto Componentes
+
+import { Card } from '../../components/Card'
+
+export function Home() {
+
+  const [studentName, setStudentName] = useState();
+  const [students, setStudent] = useState([]); 
+  const [isAddingStudent, setIsAddingStudent] = useState(false);
+  const [user, setUser] = useState({name:'', avatar:''})
+
+  useEffect(() => {
+    const savedData = localStorage.getItem('students');
+    if (savedData) {
+      setStudent(JSON.parse(savedData));
+    }
+  }, []);
+
+function handleAddStudent(){
+
+  if (!studentName.trim()) {
+    // Impedir adição de card quando o input está vazio
+    alert('Please enter a student name')
+    return;
+  }
+
+  if(isAddingStudent) return;
+  setIsAddingStudent(true);
+
+  const newStudent = {
+    name: studentName,
+    time: new Date().toLocaleTimeString("en",{
+      hour: '2-digit',
+      minute: '2-digit', 
+      second: '2-digit'
+    })
+  };
+
+  setStudent(prevState => [...prevState, newStudent]);
+
+  localStorage.setItem('students', JSON.stringify([...students, newStudent]));
+};
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('https://api.github.com/users/samarasilvia21')
+      const data = await response.json();
+      console.log("DATAS: ", data);
+      setUser({
+        name: data.name,
+        avatar: data.avatar_url,
+    });
+  }
+  fetchData();
+  },[]);
+
+  return (
+  <div className='container'>
+
+    <header>
+      <h1>Presence List</h1>
+      <div>
+        <strong>{user.name}</strong>
+        <img src={user.avatar} alt="Profile Github" />
+      </div>
+    </header>
+    
+    <input 
+      type="text" 
+      placeholder="Type your name..."
+      onChange={e => setStudentName(e.target.value)} 
+    />
+
+    <button type="button" onClick={handleAddStudent}>
+      ADD
+    </button>
+
+    {
+      students.map((student) => (
+        <Card 
+          key={student.time}
+          name={student.name} 
+          time={student.time}
+        />)
+      )
+    }
+  </div>
+  )
+}
+```
+
+## Impedindo criar usuários no mesmo tempo
+
+```jsx
+
+// Page Home
+
+import React, {useState, useEffect} from 'react';
+import './styles.css'
+
+// Importanto Componentes
+
+import { Card } from '../../components/Card'
+
+export function Home() {
+
+  const [studentName, setStudentName] = useState();
+  const [students, setStudent] = useState([]); 
+  const [isAddingStudent, setIsAddingStudent] = useState(false);
+  const [user, setUser] = useState({name:'', avatar:''})
+
+  useEffect(() => {
+    const savedData = localStorage.getItem('students');
+    if (savedData) {
+      setStudent(JSON.parse(savedData));
+    }
+  }, []);
+
+  function handleAddStudent(){
+
+    if (!studentName.trim()) {
+      // Impedir adição de card quando o input está vazio
+      alert('Please enter a student name')
+      return;
+    }
+  
+    if(isAddingStudent) return;
+    setIsAddingStudent(true);
+  
+    const newStudent = {
+      name: studentName,
+      time: new Date().toLocaleTimeString("en",{
+        hour: '2-digit',
+        minute: '2-digit', 
+        second: '2-digit'
+      })
+    };
+  
+    setStudent(prevState => [...prevState, newStudent]);
+  
+    localStorage.setItem('students', JSON.stringify([...students, newStudent]));
+  
+    // Estabelcendo limite de tempo
+  
+    setTimeout(() => {
+      console.log('You just can add student after 1s in each card')
+      setStudent([...students, newStudent]);
+      localStorage.setItem('students', JSON.stringify([...students, newStudent]));
+      setIsAddingStudent(false);
+    }, 1000);
+  };
+  
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('https://api.github.com/users/samarasilvia21')
+      const data = await response.json();
+      console.log("DATAS: ", data);
+      setUser({
+        name: data.name,
+        avatar: data.avatar_url,
+    });
+  }
+  fetchData();
+  },[]);
+
+  return (
+  <div className='container'>
+
+    <header>
+      <h1>Presence List</h1>
+      <div>
+        <strong>{user.name}</strong>
+        <img src={user.avatar} alt="Profile Github" />
+      </div>
+    </header>
+    
+    <input 
+      type="text" 
+      placeholder="Type your name..."
+      onChange={e => setStudentName(e.target.value)} 
+    />
+
+    <button type="button" onClick={handleAddStudent}>
+      ADD
+    </button>
+
+    {
+      students.map((student) => (
+        <Card 
+          key={student.time}
+          name={student.name} 
+          time={student.time}
+        />)
+      )
+    }
+  </div>
+  )
+}
+
+```
+
+## Limpando o nosso input
+
+```jsx
+
+// Page Home
+import React, {useState, useEffect} from 'react';
+import './styles.css'
+
+// Importanto Componentes
+
+import { Card } from '../../components/Card'
+
+export function Home() {
+
+  const [studentName, setStudentName] = useState();
+  const [students, setStudent] = useState([]); 
+  const [isAddingStudent, setIsAddingStudent] = useState(false);
+  const [user, setUser] = useState({name:'', avatar:''})
+
+  useEffect(() => {
+    const savedData = localStorage.getItem('students');
+    if (savedData) {
+      setStudent(JSON.parse(savedData));
+    }
+  }, []);
+
+  function handleAddStudent(){
+
+    if (!studentName.trim()) {
+      // Impedir adição de card quando o input está vazio
+      alert('Please enter a student name')
+      return;
+    }
+
+    if(isAddingStudent) return;
+    setIsAddingStudent(true);
+
+    const newStudent = {
+      name: studentName,
+      time: new Date().toLocaleTimeString("en",{
+        hour: '2-digit',
+        minute: '2-digit', 
+        second: '2-digit'
+      })
+    };
+
+    setStudent(prevState => [...prevState, newStudent]);
+
+    setTimeout(() => {
+      console.log('You just can add student after 1s in each card')
+      setStudent([...students, newStudent]);
+      localStorage.setItem('students', JSON.stringify([...students, newStudent]));
+      setStudentName(''); // Limpar o input
+      setIsAddingStudent(false);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('https://api.github.com/users/samarasilvia21')
+      const data = await response.json();
+      console.log("DATAS: ", data);
+      setUser({
+        name: data.name,
+        avatar: data.avatar_url,
+    });
+  }
+  fetchData();
+  },[]);
+
+  return (
+  <div className='container'>
+
+    <header>
+      <h1>Presence List</h1>
+      <div>
+        <strong>{user.name}</strong>
+        <img src={user.avatar} alt="Profile Github" />
+      </div>
+    </header>
+    
+    <input 
+      type="text" 
+      value={studentName} // Colocando o valor do estado (do que se escreve como valor padrão do input, quando iniciarmos o site ele vai cosniderar como padrão "false)
+      placeholder="Type your name..."
+      onChange={e => setStudentName(e.target.value)} 
+    />
+
+    <button type="button" onClick={handleAddStudent}>
+      ADD
+    </button>
+
+    {
+      students.map((student) => (
+        <Card 
+          key={student.time}
+          name={student.name} 
+          time={student.time}
+        />)
+      )
+    }
+  </div>
+  )
+}
+```
+
+## Botão de Delete para cada estudante
+
+```jsx
+
+// Page Home
+
+import React, {useState, useEffect} from 'react';
+import './styles.css'
+
+// Importanto Componentes
+
+import { Card } from '../../components/Card'
+
+export function Home() {
+
+  const [studentName, setStudentName] = useState();
+  const [students, setStudent] = useState([]); 
+  const [isAddingStudent, setIsAddingStudent] = useState(false);
+  const [user, setUser] = useState({name:'', avatar:''})
+
+  useEffect(() => {
+    const savedData = localStorage.getItem('students');
+    if (savedData) {
+      setStudent(JSON.parse(savedData));
+    }
+  }, []);
+
+  function handleAddStudent(){
+
+    if (!studentName.trim()) {
+      // Impedir adição de card quando o input está vazio
+      alert('Please enter a student name')
+      return;
+    }
+
+    if(isAddingStudent) return;
+    setIsAddingStudent(true);
+
+    const newStudent = {
+      name: studentName,
+      time: new Date().toLocaleTimeString("en",{
+        hour: '2-digit',
+        minute: '2-digit', 
+        second: '2-digit'
+      })
+    };
+
+    setStudent(prevState => [...prevState, newStudent]);
+    
+    setTimeout(() => {
+      console.log('You just can add student after 1s in each card')
+      setStudent([...students, newStudent]);
+      localStorage.setItem('students', JSON.stringify([...students, newStudent]));
+      setStudentName(''); // Limpar o input
+      setIsAddingStudent(false);
+    }, 1000);
+  };
+
+  // Função para Deletar os cards
+  const handleDelete = (index) => {
+    const newCards = [...students];
+    newCards.splice(index, 1);
+    setStudent(newCards);
+    localStorage.setItem('students', JSON.stringify(newCards));
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch('https://api.github.com/users/samarasilvia21')
+      const data = await response.json();
+      console.log("DATAS: ", data);
+      setUser({
+        name: data.name,
+        avatar: data.avatar_url,
+    });
+  }
+  fetchData();
+  },[]);
+
+  return (
+  <div className='container'>
+
+    <header>
+      <h1>Presence List</h1>
+      <div>
+        <strong>{user.name}</strong>
+        <img src={user.avatar} alt="Profile Github" />
+      </div>
+    </header>
+    
+    <input 
+      type="text" 
+      value={studentName}
+      placeholder="Type your name..."
+      onChange={e => setStudentName(e.target.value)} 
+    />
+
+    <button type="button" id="btnAdd" onClick={handleAddStudent}>
+      ADD
+    </button>
+
+    {
+      students.map((student,index) => (
+        <Card 
+          key={student.time}
+          name={student.name} 
+          time={student.time}
+          index={index} // Identificar a posição de cada card
+          onDelete={handleDelete} // Prop da page card - Conexão da page home e card
+        />)
+      )
+    }
+  </div>
+  )
+}
+
+```
+
+- **Componente Card**
+
+```jsx
+
+import './styles.css';
+
+export function Card ({name,time,index,onDelete}){
+
+    const handleDelete = () => {
+        onDelete(index);
+    };
+
+    return (
+        <div className='card'>
+            <strong>{name}</strong>
+            <small>{time}</small>
+            <button onClick={handleDelete}>Delete</button>
+        </div>
+    )
+}
+
+```
+
+- **styles.css**
+
+```css
+
+/* Page Card */
+/* Estilizando botão de deletar*/
+
+.card button {
+    width: 10%;
+    padding: 20px;
+    font-weight: 700;
+
+    background-color: #4751b9; /*4751b9*/
+    color: #ffff;
+
+    border-radius: 5px;
+    margin: 84px 0 84px;
+    border: none;
+
+    cursor: pointer;
+    transition: filter 0.2s ;
+
+    font-size: 18px;
+}
+
+```
+
+Temos também que modificar as estilizações da page home, visto que as configurações do "Add Button" estavam como padrão, afetando o nosso novo botão.
+
+- **styles.css**
+
+```css
+
+#btnAdd {
+    width: 50%;
+    padding: 24px;
+    font-weight: 700;
+
+    background-color: #EA4689; /*EA4689 -- 46eab3*/
+    color: #ffff;
+
+    border-radius: 5px;
+    margin: 12px 0 84px;
+    border: none;
+
+    cursor: pointer;
+    transition: filter 0.2s ;
+
+    font-size: 16px;
+}
+
+```
+
+## Frameworks React JS - Bootstrap 
+
+Para incrementar mais o nosso site podemos também utilizar o bootstrap - icons - para colcoa rum ícone de trash no nosso botão de delete. 
+
+Para isso é só instalar as dependências com: `npm install react-bootstrap-icons --save`
+
+E depois é só importar e usar.
+
+- **Componente Card**
+
+```jsx
+
+import './styles.css';
+import {Trash} from 'react-bootstrap-icons';
+
+export function Card ({name,time,index,onDelete}){
+
+    const handleDelete = () => {
+        onDelete(index);
+    };
+
+    return (
+        <div className='card'>
+            <strong>{name}</strong>
+            <small>{time}</small>
+            <button onClick={handleDelete}><Trash/></button>
+        </div>
+    )
+}
+
+```
 
 ## Referências
 
