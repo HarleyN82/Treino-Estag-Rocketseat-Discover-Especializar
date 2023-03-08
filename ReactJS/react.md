@@ -15,7 +15,7 @@ Ao criar um projeto utilizando o React JS podemos utilizar os seguintes boilerpl
 
 - Create React App (CRA)
 - Vite
-
+-
 ❗Dica: Boilerplates se refere a seções de código que devem ser incluídas em muitos lugares. É um template, ou seja, uma forma padrão de se escrever algo que pode ser copiado.
 
 ## Quais as vantagens de utilziar Vite ao invés do CRA ?
@@ -1089,6 +1089,8 @@ fetchData();
 Fazemos dessa forma, forçando um assicnronismo, porque o useEffect propriamente dito não consegue fazer, então atribuimos o assincronismo para a função dentro do useEffect.
 
 ## Salvando Dados no Local Storage
+
+> 
 
 ```jsx
 
