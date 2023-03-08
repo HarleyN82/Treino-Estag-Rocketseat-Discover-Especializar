@@ -15,7 +15,7 @@ Ao criar um projeto utilizando o React JS podemos utilizar os seguintes boilerpl
 
 - Create React App (CRA)
 - Vite
--
+
 ❗Dica: Boilerplates se refere a seções de código que devem ser incluídas em muitos lugares. É um template, ou seja, uma forma padrão de se escrever algo que pode ser copiado.
 
 ## Quais as vantagens de utilziar Vite ao invés do CRA ?
