@@ -230,7 +230,7 @@ Tendo estruturado e configurado o nosso ambiente de trabalho e tido ciência das
   - Pasta chamada "styles"
     - arquivo chamado "global.css";
 
-<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estrutura-pastas-e-arquivos.png">
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://user-images.githubusercontent.com/113690864/223725362-57c9958a-5777-45de-b77f-3efffb8d8050.png">
 
 ## Fragment
 
