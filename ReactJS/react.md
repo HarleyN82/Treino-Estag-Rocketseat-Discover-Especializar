@@ -1101,8 +1101,6 @@ Para salvar os dados no Local Storage, você pode seguir os seguintes passos:
 - Se houver dados salvos, converta a string JSON de volta para um objeto usando a função `JSON.parse`.
 - Renderize os dados na tela, por exemplo, criando um novo mini card para cada objeto de dados.
 
-> 
-
 ```jsx
 
 import React, {useState, useEffect} from 'react';
@@ -1211,7 +1209,9 @@ Por fim, renderizamos os dados salvos na tela usando um loop `map`.
 
 ## Alerta para input vazio
 
-> 
+> Essa funcionalidade é algo simples, apenas para o usuário saber que precisa adicionar um nome no cadastro dos estudantes.
+
+Assim, para impedir que o usuário adicione um novo card estando o input  vazio, podemos adicionar uma verificação simples no manipulador de eventos `handleAddStudent` para garantir que o valor do input não esteja vazio antes de criar um novo card.
 
 ```jsx
 
@@ -1310,6 +1310,9 @@ function handleAddStudent(){
 }
 ```
 
+Neste exemplo, adicionamos uma verificação para o valor do input no início da função `handleAddStudent`. Se o valor do input estiver vazio (ou contiver apenas espaços em branco), retornamos precocemente e impedimos a adição de um novo card.
+
+Observe que esta verificação simples impede que o usuário adicione um novo card somente se o input estiver vazio. Em um aplicativo real, você pode querer adicionar lógica mais sofisticada para lidar com diferentes cenários.
 
 - **Resultado:**
 
@@ -1317,7 +1320,11 @@ function handleAddStudent(){
 
 ## Impedindo criar usuários no mesmo tempo
 
-> 
+> Quando adicionamos a Key Prop foi notado ao longo do desenvolvimento do app, um meio de burlar as regras e mesmo com o tempo sendo uma key poderia ter dois usuários cadastrados no mesmo tempo.
+
+Dessa forma, usamos o método de assíncronismo `setTimeout` para dispor de um intervalo de tempo até o próximo cadastro, mesmo que o usuário clique múltiplas vezes.
+
+Então, definimos uma variável de estado que rastreia se uma adição está em andamento ou não. Além de, podermos atualizar essa variável de estado quando a adição de um novo card começa e termina.
 
 ```jsx
 
@@ -1427,6 +1434,14 @@ export function Home() {
 }
 
 ```
+
+Neste exemplo, adicionamos um estado `isAddingStudent` que é definido como false por padrão. Quando o usuário clica no botão "Adicionar", verificamos se `isAddingStudent` é true. Se sim, significa que já há uma adição em andamento e não permitimos que o usuário adicione outro card. Se `isAddingStudent` for false, definimos `isAddingStudent` como true para indicar que uma adição está em andamento. Em seguida, adicionamos um tempo limite de 1 segundo antes de adicionar o novo card e definir `isAddingStudent` de volta para false. Durante esse tempo limite, o botão "Adicionar" fica desabilitado.
+
+Observe que este exemplo usa um tempo limite rígido de 1 segundo para ilustrar o conceito. Em um aplicativo real, você pode querer adicionar lógica mais sofisticada para lidar com diferentes cenários.
+
+- **Resultado:**
+
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estilizando-pagina-css.png">
 
 ## Limpando o nosso input
 
@@ -1539,6 +1554,11 @@ export function Home() {
 ```
 
 Neste exemplo, chamamos `setName('')` após adicionar um novo card, o que atualiza o estado do input para uma string vazia e limpa o valor do input. Observe que, para garantir que o estado do input esteja sempre sincronizado com o valor do input, usamos a propriedade value do input para definir o valor do input como name e passamos um manipulador de eventos `onChange` que atualiza o estado do input sempre que o valor do input é alterado.
+
+- **Resultado:**
+
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estilizando-pagina-css.png">
+
 
 ## Botão de Delete para cada estudante
 			 
@@ -1660,6 +1680,10 @@ export function Home() {
 
 ```
 
+Neste exemplo, adicionamos um novo botão de "Delete" para cada card e passamos o índice do card como um argumento para a função `handleDelete`. Essa função remove o card selecionado do array de cards e atualiza o estado do componente e o `Local Storage` com os novos dados.
+
+Dentro do método map, passamos a função `handleDelete` como uma função de callback para o botão de "Delete", usando uma arrow function para garantir que o índice correto do card seja passado para a função.
+
 - **Componente Card**
 
 ```jsx
@@ -1736,6 +1760,10 @@ Temos também que modificar as estilizações da page home, visto que as configu
 
 ```
 
+- **Resultado:**
+
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estilizando-pagina-css.png">
+
 ## Frameworks React JS - Bootstrap 
 
 Para incrementar mais o nosso site podemos também utilizar o bootstrap - icons - para colcoa rum ícone de trash no nosso botão de delete. 
@@ -1767,6 +1795,10 @@ export function Card ({name,time,index,onDelete}){
 }
 
 ```
+
+- **Resultado:**
+
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estilizando-pagina-css.png">
 
 ## Referências
 
