@@ -1209,6 +1209,8 @@ Por fim, renderizamos os dados salvos na tela usando um loop `map`.
 
 ## Alerta para input vazio
 
+> 
+
 ```jsx
 
 // Page home
@@ -1306,7 +1308,14 @@ function handleAddStudent(){
 }
 ```
 
+
+- **Resultado:**
+
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estilizando-pagina-css.png">
+
 ## Impedindo criar usuários no mesmo tempo
+
+> 
 
 ```jsx
 
@@ -1419,6 +1428,10 @@ export function Home() {
 
 ## Limpando o nosso input
 
+> Essa funcionalidade serve para facilitar na hora de cadastrar os usuários. Não precisando ter que apagar o antigo nome e colocar o novo. Além de, pelo fato de após o click do "button add" o nome no input apagar logo se torna um segundo pretexto para não adicionar novos estudantes com o mesmo nome e no mesmo tempo.
+
+Para limpar o input após clicar no botão de adicionar, podemos atualizar o estado do input para uma string vazia no manipulador de eventos `handleAddStudent`.
+
 ```jsx
 
 // Page Home
@@ -1522,6 +1535,8 @@ export function Home() {
   )
 }
 ```
+
+Neste exemplo, chamamos `setName('')` após adicionar um novo card, o que atualiza o estado do input para uma string vazia e limpa o valor do input. Observe que, para garantir que o estado do input esteja sempre sincronizado com o valor do input, usamos a propriedade value do input para definir o valor do input como name e passamos um manipulador de eventos `onChange` que atualiza o estado do input sempre que o valor do input é alterado.
 
 ## Botão de Delete para cada estudante
 			 
