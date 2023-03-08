@@ -1090,7 +1090,7 @@ Fazemos dessa forma, forçando um assicnronismo, porque o useEffect propriamente
 
 ## Salvando Dados no Local Storage
 	
-> 
+> Essa funcionalidade é uma forma de mantermos os nossos dados "seguros".
 	
 Para salvar os dados no Local Storage, você pode seguir os seguintes passos:
 
@@ -1202,10 +1202,10 @@ Neste exemplo, usamos o `useState` para armazenar o nome digitado pelo usuário 
 O método `handleAddStudent` é chamado quando o usuário clica no botão Adicionar. Ele cria um novo objeto com o nome digitado pelo usuário e o tempo atual, adiciona este objeto aos dados salvos e salva a nova lista de dados no Local Storage.
 
 Por fim, renderizamos os dados salvos na tela usando um loop `map`.
-	
+
 - **Resultado:**
 
-<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estilizando-pagina-css.png">
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://user-images.githubusercontent.com/113690864/223724617-69515b8e-ad8b-4dd0-9e77-1994e8513140.gif">
 
 ## Alerta para input vazio
 
@@ -1315,8 +1315,7 @@ Neste exemplo, adicionamos uma verificação para o valor do input no início da
 Observe que esta verificação simples impede que o usuário adicione um novo card somente se o input estiver vazio. Em um aplicativo real, você pode querer adicionar lógica mais sofisticada para lidar com diferentes cenários.
 
 - **Resultado:**
-
-<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estilizando-pagina-css.png">
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://user-images.githubusercontent.com/113690864/223724717-d976452b-bfd8-4408-b712-ff75f556da94.gif">
 
 ## Impedindo criar usuários no mesmo tempo
 
@@ -1439,9 +1438,11 @@ Neste exemplo, adicionamos um estado `isAddingStudent` que é definido como fals
 
 Observe que este exemplo usa um tempo limite rígido de 1 segundo para ilustrar o conceito. Em um aplicativo real, você pode querer adicionar lógica mais sofisticada para lidar com diferentes cenários.
 
-- **Resultado:**
+- **Resultado: Antes**
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://user-images.githubusercontent.com/113690864/223724238-b9c5074b-4893-43bb-a6bf-acec07f253b1.gif">
 
-<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estilizando-pagina-css.png">
+- **Resultado: Depois**
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://user-images.githubusercontent.com/113690864/223724226-ac8e52c6-f0fc-48d1-ae30-349699472bdb.gif">
 
 ## Limpando o nosso input
 
@@ -1554,11 +1555,6 @@ export function Home() {
 ```
 
 Neste exemplo, chamamos `setName('')` após adicionar um novo card, o que atualiza o estado do input para uma string vazia e limpa o valor do input. Observe que, para garantir que o estado do input esteja sempre sincronizado com o valor do input, usamos a propriedade value do input para definir o valor do input como name e passamos um manipulador de eventos `onChange` que atualiza o estado do input sempre que o valor do input é alterado.
-
-- **Resultado:**
-
-<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estilizando-pagina-css.png">
-
 
 ## Botão de Delete para cada estudante
 			 
@@ -1762,7 +1758,7 @@ Temos também que modificar as estilizações da page home, visto que as configu
 
 - **Resultado:**
 
-<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estilizando-pagina-css.png">
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://user-images.githubusercontent.com/113690864/223723653-6a2bdbed-cb6a-4714-92a9-4e47a0e1d089.gif">
 
 ## Frameworks React JS - Bootstrap 
 
@@ -1795,10 +1791,6 @@ export function Card ({name,time,index,onDelete}){
 }
 
 ```
-
-- **Resultado:**
-
-<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estilizando-pagina-css.png">
 
 ## Referências
 
