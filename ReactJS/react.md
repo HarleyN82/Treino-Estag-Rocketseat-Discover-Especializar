@@ -1089,6 +1089,17 @@ fetchData();
 Fazemos dessa forma, forçando um assicnronismo, porque o useEffect propriamente dito não consegue fazer, então atribuimos o assincronismo para a função dentro do useEffect.
 
 ## Salvando Dados no Local Storage
+	
+> 
+	
+Para salvar os dados no Local Storage, você pode seguir os seguintes passos:
+
+- Ao clicar no botão adicionar, crie um objeto com as informações que deseja salvar no Local Storage (nome e tempo atual, por exemplo).
+- Converta o objeto em uma string JSON usando a função `JSON.stringify`.
+- Salve a string JSON no Local Storage usando a função `localStorage.setItem`.
+- Para exibir os dados salvos, primeiro verifique se há dados salvos no Local Storage usando a função `localStorage.getItem`.
+- Se houver dados salvos, converta a string JSON de volta para um objeto usando a função `JSON.parse`.
+- Renderize os dados na tela, por exemplo, criando um novo mini card para cada objeto de dados.
 
 > 
 
@@ -1188,7 +1199,19 @@ export function Home() {
 
 ```
 
+Neste exemplo, usamos o `useState` para armazenar o nome digitado pelo usuário e os dados salvos no Local Storage. Usamos o `useEffect` para carregar os dados salvos do Local Storage quando o componente é montado.
+
+O método `handleAddStudent` é chamado quando o usuário clica no botão Adicionar. Ele cria um novo objeto com o nome digitado pelo usuário e o tempo atual, adiciona este objeto aos dados salvos e salva a nova lista de dados no Local Storage.
+
+Por fim, renderizamos os dados salvos na tela usando um loop `map`.
+	
+- **Resultado:**
+
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estilizando-pagina-css.png">
+
 ## Alerta para input vazio
+
+> 
 
 ```jsx
 
@@ -1287,7 +1310,14 @@ function handleAddStudent(){
 }
 ```
 
+
+- **Resultado:**
+
+<img alt="Symbol-Code" height="400" weigth="400" style="border-radius:150px" src="https://storage.googleapis.com/golden-wind/discover/especializar/reactjs/estilizando-pagina-css.png">
+
 ## Impedindo criar usuários no mesmo tempo
+
+> 
 
 ```jsx
 
@@ -1400,6 +1430,10 @@ export function Home() {
 
 ## Limpando o nosso input
 
+> Essa funcionalidade serve para facilitar na hora de cadastrar os usuários. Não precisando ter que apagar o antigo nome e colocar o novo. Além de, pelo fato de após o click do "button add" o nome no input apagar logo se torna um segundo pretexto para não adicionar novos estudantes com o mesmo nome e no mesmo tempo.
+
+Para limpar o input após clicar no botão de adicionar, podemos atualizar o estado do input para uma string vazia no manipulador de eventos `handleAddStudent`.
+
 ```jsx
 
 // Page Home
@@ -1504,7 +1538,11 @@ export function Home() {
 }
 ```
 
+Neste exemplo, chamamos `setName('')` após adicionar um novo card, o que atualiza o estado do input para uma string vazia e limpa o valor do input. Observe que, para garantir que o estado do input esteja sempre sincronizado com o valor do input, usamos a propriedade value do input para definir o valor do input como name e passamos um manipulador de eventos `onChange` que atualiza o estado do input sempre que o valor do input é alterado.
+
 ## Botão de Delete para cada estudante
+			 
+> O objetivo dessa funcionalidade é cada card de estudante ter seu próprio botão de delete.
 
 ```jsx
 
