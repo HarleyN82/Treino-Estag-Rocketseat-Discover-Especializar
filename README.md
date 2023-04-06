@@ -15,5 +15,5 @@
 - TypeScript - 
 
 ## Registro
-- Todas as Aulas: 27/01/23 - ...
-- Ao todo foram 7 módulos, equivalente a um curso de x horas.
+- Todas as Aulas: 27/01/23 - 09/03/23
+- Ao todo foram 7 módulos, equivalente a um curso de 11h11 horas.
