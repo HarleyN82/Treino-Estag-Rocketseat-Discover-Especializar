@@ -4,13 +4,18 @@ import './styles.css'
 // Importanto Componentes
 
 import { Card } from '../../components/Card'
+import {Message} from '../../components/Message'
 
 export function Home() {
 
   const [studentName, setStudentName] = useState();
   const [students, setStudent] = useState([]); 
+
   const [isAddingStudent, setIsAddingStudent] = useState(false);
   const [user, setUser] = useState({name:'', avatar:''})
+
+  const [message, setMessage] = useState()
+  const [typeMessage, setTypeMessage] = useState()
 
   useEffect(() => {
     const savedData = localStorage.getItem('students');
@@ -23,13 +28,14 @@ export function Home() {
 
     if (!studentName.trim()) {
       // Impedir adição de card quando o input está vazio
-      alert('Please enter a student name')
+      setMessage('Please enter a student name');
+      setTypeMessage('error');
       return;
     }
-  
+
     if(isAddingStudent) return;
     setIsAddingStudent(true);
-
+    
     const newStudent = {
       name: studentName,
       time: new Date().toLocaleTimeString("en",{
@@ -39,14 +45,29 @@ export function Home() {
       })
     };
 
+    // Verificar se já existe um estudante com o mesmo nome
+    const studentExists = students.some(
+      (student) => student.name.toLowerCase() === newStudent.name.toLowerCase()
+    );
+
+    if (studentExists) {
+      setMessage('This student is already on the list');
+      setTypeMessage('error');
+      setIsAddingStudent(false);
+      return;
+    }
+
     setStudent(prevState => [...prevState, newStudent]);
+    setMessage('Student added successfully');
+    setTypeMessage('sucess');
 
     setTimeout(() => {
-      console.log('You just can add student after 1s in each card')
+      setMessage('You just can add student after 1s in each card');
+      setTypeMessage('care');
+      setIsAddingStudent(false);
       setStudent([...students, newStudent]);
       localStorage.setItem('students', JSON.stringify([...students, newStudent]));
       setStudentName(''); // Limpar o input
-      setIsAddingStudent(false);
     }, 1000);
   };
 
@@ -54,6 +75,9 @@ export function Home() {
     const newCards = [...students];
     newCards.splice(index, 1);
     setStudent(newCards);
+    setMessage('');
+    setMessage('Student deleted successfully');
+    setTypeMessage('sucess');
     localStorage.setItem('students', JSON.stringify(newCards));
   };
 
@@ -92,6 +116,7 @@ export function Home() {
       ADD
     </button>
 
+    {message && <Message type={typeMessage} msg={message}/>}
     {
       students.map((student,index) => (
         <Card 
